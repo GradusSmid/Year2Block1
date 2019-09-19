@@ -1263,10 +1263,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   jumpspeed: 20
-  JetpackFuel: 1000
-  jetpackfueltext: {fileID: 1003347519}
-  Jetpack: {fileID: 1727546606}
   arm: {fileID: 165806291}
+  JetpackFuel: 100
+  jetpackfueltext: {fileID: 1003347519}
 --- !u!61 &1792510948
 BoxCollider2D:
   m_ObjectHideFlags: 0
