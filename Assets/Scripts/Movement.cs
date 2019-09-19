@@ -9,13 +9,13 @@ public class Movement : MonoBehaviour
     public float jumpspeed;
     private bool isGrounded;
     private bool waterJetpackUsing;
+    public GameObject arm;
 
     public float JetpackFuel = 100;
     public Text jetpackfueltext;
-    public GameObject Jetpack;
     private Rigidbody2D rb;
     private LineRenderer lr;
-    public GameObject arm;
+    
 
 
     // Start is called before the first frame update
