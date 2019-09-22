@@ -7,12 +7,17 @@ public class MovementP2 : MonoBehaviour
     public float speed;
     public float jumpspeed;
     private bool isGrounded;
-    private Rigidbody rb;
+
+    public GameObject arm;
+    public GameObject Jetpack;
+    private bool usingJetpack;
+
+    private Rigidbody2D rb;
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -42,7 +47,7 @@ public class MovementP2 : MonoBehaviour
 
             jump *= Time.deltaTime;
 
-            rb.AddForce(Vector3.up * jump, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * jump, ForceMode2D.Impulse);
 
         }
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), 1.1f))
@@ -52,6 +57,22 @@ public class MovementP2 : MonoBehaviour
         else
             isGrounded = false;
 
+        //Arm movement
+
+        arm.transform.localPosition = new Vector3(Input.GetAxis("HorizontalRStickP2"), Input.GetAxis("VerticalRStickP2"), 0).normalized;
+        arm.transform.rotation = Quaternion.identity;
 
     }
+    //Getting the Jetpack
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Jetpack" && usingJetpack == false)
+        {
+            Debug.Log("Time to fly");
+            GameObject ChildJetpack = Instantiate(Jetpack, arm.transform.position, Quaternion.identity);
+            ChildJetpack.transform.parent = arm.transform;
+            usingJetpack = true;
+        }
+    }
 }
+
