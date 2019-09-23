@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class MovementP2 : MonoBehaviour
 {
+    //Player stats
     public float speed;
     public float jumpspeed;
     private bool isGrounded;
-
+    private Rigidbody2D rb;
     public GameObject arm;
+    private bool handIsEmpty = true;
+    //Jetpack values
     public GameObject Jetpack;
     private bool usingJetpack;
-
-    private Rigidbody2D rb;
+    //Hammer values
+    public GameObject hammer;
+    private bool usingHammer;
 
     // Start is called before the first frame update
     void Start()
@@ -72,6 +76,15 @@ public class MovementP2 : MonoBehaviour
             GameObject ChildJetpack = Instantiate(Jetpack, arm.transform.position, Quaternion.identity);
             ChildJetpack.transform.parent = arm.transform;
             usingJetpack = true;
+        }
+
+        if (col.gameObject.tag == ("Hammer") && usingHammer == false && handIsEmpty == true)
+        {
+            Debug.Log("hULK SMASH");
+            GameObject ChildHammer = Instantiate(hammer, arm.transform.position, Quaternion.identity);
+            ChildHammer.transform.parent = arm.transform;
+            usingHammer = true;
+            handIsEmpty = false;
         }
     }
 }
