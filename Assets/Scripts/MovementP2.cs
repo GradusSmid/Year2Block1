@@ -70,12 +70,13 @@ public class MovementP2 : MonoBehaviour
     //Getting the Jetpack
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Jetpack" && usingJetpack == false)
+        if (col.gameObject.tag == "Jetpack" && usingJetpack == false && handIsEmpty == true)
         {
             Debug.Log("Time to fly");
             GameObject ChildJetpack = Instantiate(Jetpack, arm.transform.position, Quaternion.identity);
             ChildJetpack.transform.parent = arm.transform;
             usingJetpack = true;
+            handIsEmpty = false;
         }
 
         if (col.gameObject.tag == ("Hammer") && usingHammer == false && handIsEmpty == true)

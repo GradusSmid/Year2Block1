@@ -8,7 +8,7 @@ public class WaterJetpack : MonoBehaviour
     private LineRenderer lr;
     public GameObject arm;
     private bool waterJetpackUsing;
-    public float JetpackFuel = 100;
+    public float JetpackFuel = 500;
     private Rigidbody2D rb;
     public GameObject player;
 
@@ -28,7 +28,7 @@ public class WaterJetpack : MonoBehaviour
     {
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 forceDirection;
-        RaycastHit hit = new RaycastHit();
+      //  RaycastHit hit = new RaycastHit();
 
         lr.enabled = false;
         lr.SetPosition(0, arm.transform.position);
@@ -43,22 +43,23 @@ public class WaterJetpack : MonoBehaviour
             playerHor = Input.GetAxis("HorizontalRStickP2");
             playerVer = Input.GetAxis("VerticalRStickP2");
         }
-
-            //Using Jetpack
-            if (playerHor >= 0.01 && JetpackFuel >= 0 || playerVer >= 0.01 && JetpackFuel >= 0 || playerHor <= -0.01 && JetpackFuel >= 0 || playerVer <= -0.01 && JetpackFuel >= 0)
+        Debug.DrawRay(arm.transform.position, transform.TransformDirection(arm.transform.localPosition), Color.blue);
+        //Using Jetpack
+        if (playerHor >= 0.01 && JetpackFuel >= 0 || playerVer >= 0.01 && JetpackFuel >= 0 || playerHor <= -0.01 && JetpackFuel >= 0 || playerVer <= -0.01 && JetpackFuel >= 0)
             {
-                rb.AddForce(-arm.transform.localPosition * 15);
-                lr.enabled = true;
-                JetpackFuel--;
+            rb.AddForce(-arm.transform.localPosition * 15);
+            lr.enabled = true;
+            JetpackFuel--;
 
-                //hit other players
-                if (Physics.Raycast(arm.transform.position, transform.TransformDirection(arm.transform.localPosition), out hit, Mathf.Infinity))
-                {
+            RaycastHit2D hit = Physics2D.Raycast(arm.transform.position, transform.TransformDirection(arm.transform.localPosition));
+            //hit other players
+            if (hit.collider != null)
+            {
                     Debug.Log("Did Hit" + hit.collider.gameObject.name);
-                    Debug.DrawRay(arm.transform.position, transform.TransformDirection(arm.transform.localPosition), Color.blue);
+                    
                     lr.SetPosition(1, hit.point);
 
-                    if (hit.collider.gameObject.name == "Player 2" || hit.collider.gameObject.name == "Player 1")
+                    if (hit.collider.gameObject.tag == "Player" || hit.collider.gameObject.tag == "Player")
                     {
                         forceDirection = hit.transform.position - transform.position;
                         hit.rigidbody.AddForceAtPosition(forceDirection.normalized * 15, transform.position);

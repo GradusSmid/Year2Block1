@@ -94,5 +94,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arm: {fileID: 0}
-  JetpackFuel: 100
-  jetpackfueltext: {fileID: 0}
+  JetpackFuel: 500
+  player: {fileID: 0}

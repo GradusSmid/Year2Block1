@@ -28,7 +28,7 @@ public class Hammer : MonoBehaviour
         {
             Debug.Log("Smashh");
             forceDirection = col.transform.position - transform.position;
-            col.gameObject.GetComponent<Rigidbody2D>().AddForceAtPosition(forceDirection.normalized * 1000, transform.position);
+            col.gameObject.GetComponent<Rigidbody2D>().AddForceAtPosition(forceDirection.normalized * 250, transform.position);
         }
     }
 }
