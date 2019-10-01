@@ -18,7 +18,10 @@ public class Movement : MonoBehaviour
     //Hammer values
     public GameObject hammer;
     private bool usingHammer;
-
+    //grapplinghook values
+    public bool isSwinging;
+    public GameObject Grapplinghook;
+    private bool usingHook;
 
 
 
@@ -93,6 +96,16 @@ public class Movement : MonoBehaviour
             ChildHammer.transform.parent = arm.transform;
             usingHammer = true;
             handIsEmpty = false;
+        }
+
+        if(col.gameObject.tag == ("Hook") && usingHook == false && handIsEmpty == true)
+        {
+            Debug.Log("Swinging");
+            GameObject childHook = Instantiate(Grapplinghook, arm.transform.position, Quaternion.identity);
+            childHook.transform.parent = arm.transform;
+            usingHook = true;
+            handIsEmpty = false;
+            GetComponent<DistanceJoint2D>().enabled= true;
         }
     }
 }
