@@ -75,7 +75,6 @@ public class Movement : MonoBehaviour
 
         arm.transform.localPosition = new Vector3(Input.GetAxis("HorizontalRStick"), Input.GetAxis("VerticalRStick"), 0).normalized;
         arm.transform.rotation = Quaternion.identity;
-  
     }
     //Getting the Jetpack
     void OnTriggerEnter2D(Collider2D col)
@@ -107,5 +106,27 @@ public class Movement : MonoBehaviour
             handIsEmpty = false;
             GetComponent<DistanceJoint2D>().enabled= true;
         }
+    }
+    private void OnBecameInvisible()
+    {
+        if (this.gameObject.activeInHierarchy == true)
+        StartCoroutine("Die");
+    }
+
+    private void OnBecameVisible()
+    {
+        StopCoroutine("Die");
+    }
+
+    IEnumerator Die()
+    {
+        Debug.Log("Start wait");
+        yield return new WaitForSeconds(1);
+        Debug.Log("Die now");
+        Destroy(this.gameObject);
+        Time.timeScale = 0.75f;
+        yield return new WaitForSeconds(1);
+        Time.timeScale = 1f;
+        yield return null;
     }
 }

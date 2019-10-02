@@ -17,6 +17,10 @@ public class MovementP2 : MonoBehaviour
     //Hammer values
     public GameObject hammer;
     private bool usingHammer;
+    //grapplinghook values
+    public bool isSwinging;
+    public GameObject Grapplinghook;
+    private bool usingHook;
 
     // Start is called before the first frame update
     void Start()
@@ -87,6 +91,37 @@ public class MovementP2 : MonoBehaviour
             usingHammer = true;
             handIsEmpty = false;
         }
+        if (col.gameObject.tag == ("Hook") && usingHook == false && handIsEmpty == true)
+        {
+            Debug.Log("Swinging");
+            GameObject childHook = Instantiate(Grapplinghook, arm.transform.position, Quaternion.identity);
+            childHook.transform.parent = arm.transform;
+            usingHook = true;
+            handIsEmpty = false;
+            GetComponent<DistanceJoint2D>().enabled = true;
+        }
+    }
+    private void OnBecameInvisible()
+    {
+        if (this.gameObject.activeInHierarchy == true)
+            StartCoroutine("Die");
+    }
+
+    private void OnBecameVisible()
+    {
+        StopCoroutine("Die");
+    }
+
+    IEnumerator Die()
+    {
+        Debug.Log("Start wait");
+        yield return new WaitForSeconds(1);
+        Debug.Log("Die now");
+        Destroy(this.gameObject);
+        Time.timeScale = 0.75f;
+        yield return new WaitForSeconds(1);
+        Time.timeScale = 1f;
+        yield return null;
     }
 }
 
