@@ -22,6 +22,11 @@ public class RopeSystem : MonoBehaviour
     private List<Vector2> ropePositions = new List<Vector2>();
     private bool distanceSet;
 
+    public GameObject player;
+    private float playerHor;
+    private float playerVer;
+    private bool fireButton;
+
     void Start()
     {
         // 2
@@ -33,6 +38,7 @@ public class RopeSystem : MonoBehaviour
         ropeHingeAnchorRb = ropeHingeAnchor.GetComponent<Rigidbody2D>();
         ropeHingeAnchorSprite = ropeHingeAnchor.GetComponent<SpriteRenderer>();
         ropeJoint.connectedBody = ropeHingeAnchorRb;
+        player = transform.parent.gameObject.transform.parent.gameObject;
         /////
 
     }
@@ -41,7 +47,19 @@ public class RopeSystem : MonoBehaviour
     {
         // 3
 
-        var aimAngle = Mathf.Atan2(Input.GetAxis("VerticalRStick"), Input.GetAxis("HorizontalRStick"));
+        if (player.name == "Player 1")
+        {
+            playerHor = Input.GetAxis("HorizontalRStick");
+            playerVer = Input.GetAxis("VerticalRStick");
+            fireButton = Input.GetButtonDown("Fire1");
+        }
+        if (player.name == "Player 2")
+        {
+            playerHor = Input.GetAxis("HorizontalRStickP2");
+            playerVer = Input.GetAxis("VerticalRStickP2");
+            fireButton = Input.GetButtonDown("Fire1P2");
+        }
+        var aimAngle = Mathf.Atan2(playerVer, playerHor);
         if (aimAngle < 0f)
         {
             aimAngle = Mathf.PI * 2 + aimAngle;
