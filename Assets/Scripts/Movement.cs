@@ -12,6 +12,7 @@ public class Movement : MonoBehaviour
     private Rigidbody2D rb;
     public GameObject arm;
     private bool handIsEmpty = true;
+    private float horizontalInput;
     //Jetpack values
     public GameObject Jetpack;
     private bool usingJetpack;
@@ -35,6 +36,7 @@ public class Movement : MonoBehaviour
     void Update()
     {
         //Move Left and Right
+        horizontalInput = Input.GetAxis("Horizontal");
 
         if (Input.GetAxis("Horizontal") >= 0.90f || Input.GetAxis("Horizontal") <= -0.90f)
         {
@@ -120,9 +122,7 @@ public class Movement : MonoBehaviour
 
     IEnumerator Die()
     {
-        Debug.Log("Start wait");
         yield return new WaitForSeconds(1);
-        Debug.Log("Die now");
         Destroy(this.gameObject);
         Time.timeScale = 0.75f;
         yield return new WaitForSeconds(1);

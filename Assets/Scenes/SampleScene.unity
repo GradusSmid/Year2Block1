@@ -699,6 +699,7 @@ PrefabInstance:
       objectReference: {fileID: 6200000, guid: fece25449d2b14a4ca02fca3fd603ea2, type: 2}
     m_RemovedComponents:
     - {fileID: 2822290575742418585, guid: 2b31f0c7f640cca4a8c27a7c62792a24, type: 3}
+    - {fileID: 2822290575742418578, guid: 2b31f0c7f640cca4a8c27a7c62792a24, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2b31f0c7f640cca4a8c27a7c62792a24, type: 3}
 --- !u!1 &518124343 stripped
 GameObject:
@@ -1488,21 +1489,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2822290575742418578, guid: 2b31f0c7f640cca4a8c27a7c62792a24,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2822290575742418578, guid: 2b31f0c7f640cca4a8c27a7c62792a24,
-        type: 3}
-      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
-      value: 0.2968731
-      objectReference: {fileID: 0}
-    - target: {fileID: 2822290575742418578, guid: 2b31f0c7f640cca4a8c27a7c62792a24,
-        type: 3}
-      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2822290575742418590, guid: 2b31f0c7f640cca4a8c27a7c62792a24,
         type: 3}
       propertyPath: m_Material
@@ -1513,7 +1499,23 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: fece25449d2b14a4ca02fca3fd603ea2, type: 2}
-    m_RemovedComponents: []
+    - target: {fileID: 2822290575742418578, guid: 2b31f0c7f640cca4a8c27a7c62792a24,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2822290575742418578, guid: 2b31f0c7f640cca4a8c27a7c62792a24,
+        type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.49479485
+      objectReference: {fileID: 0}
+    - target: {fileID: 2822290575742418578, guid: 2b31f0c7f640cca4a8c27a7c62792a24,
+        type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2822290575742418578, guid: 2b31f0c7f640cca4a8c27a7c62792a24, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2b31f0c7f640cca4a8c27a7c62792a24, type: 3}
 --- !u!1001 &7809821481930102861
 PrefabInstance:

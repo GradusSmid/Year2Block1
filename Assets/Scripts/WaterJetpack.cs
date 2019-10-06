@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class WaterJetpack : MonoBehaviour
 {
-    private LineRenderer lr;
+    public LineRenderer lr;
     public GameObject arm;
     private bool waterJetpackUsing;
     public float JetpackFuel = 500;
@@ -17,10 +17,11 @@ public class WaterJetpack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        lr = GetComponentInParent<LineRenderer>();
+        lr = GetComponent<LineRenderer>();
         rb = GetComponentInParent<Rigidbody2D>();
         arm = transform.parent.gameObject;
         player = transform.parent.gameObject.transform.parent.gameObject;
+        
     }
 
     // Update is called once per frame
@@ -50,7 +51,7 @@ public class WaterJetpack : MonoBehaviour
             rb.AddForce(-arm.transform.localPosition * 15);
             lr.enabled = true;
             JetpackFuel--;
-
+            
             RaycastHit2D hit = Physics2D.Raycast(arm.transform.position, transform.TransformDirection(arm.transform.localPosition));
             //hit other players
             if (hit.collider != null)
