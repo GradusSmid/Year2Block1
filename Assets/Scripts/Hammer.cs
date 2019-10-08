@@ -4,16 +4,10 @@ using UnityEngine;
 
 public class Hammer : MonoBehaviour
 {
-    public GameObject arm;
-    public GameObject player;
-
-    private float playerHor;
-    private float playerVer;
     // Start is called before the first frame update
     void Start()
     {
-        arm = transform.parent.gameObject;
-        player = transform.parent.gameObject.transform.parent.gameObject;
+
     }
 
     // Update is called once per frame
