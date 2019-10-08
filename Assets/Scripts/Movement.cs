@@ -8,7 +8,7 @@ public class Movement : MonoBehaviour
     //Player stats
     public float speed;
     public float jumpspeed;
-    private bool isGrounded;
+    public bool isGrounded;
     private Rigidbody2D rb;
     public GameObject arm;
     private bool handIsEmpty = true;
@@ -37,8 +37,15 @@ public class Movement : MonoBehaviour
     {
         //Move Left and Right
         horizontalInput = Input.GetAxis("Horizontal");
-
-        if (Input.GetAxis("Horizontal") >= 0.90f || Input.GetAxis("Horizontal") <= -0.90f)
+        if (horizontalInput < 0f || horizontalInput > 0f)
+        {
+            GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
+            arm.GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
+            transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
+            transform.GetChild(2).gameObject.GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
+            transform.GetChild(3).gameObject.GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
+        }
+            if (Input.GetAxis("Horizontal") >= 0.90f || Input.GetAxis("Horizontal") <= -0.90f)
         {
             speed = 15;
         }

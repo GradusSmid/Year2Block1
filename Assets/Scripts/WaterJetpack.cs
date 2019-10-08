@@ -44,6 +44,16 @@ public class WaterJetpack : MonoBehaviour
             playerHor = Input.GetAxis("HorizontalRStickP2");
             playerVer = Input.GetAxis("VerticalRStickP2");
         }
+        if (player.name == "Player 3")
+        {
+            playerHor = Input.GetAxis("HorizontalRStickP3");
+            playerVer = Input.GetAxis("VerticalRStickP3");
+        }
+        if (player.name == "Player 4")
+        {
+            playerHor = Input.GetAxis("HorizontalRStickP4");
+            playerVer = Input.GetAxis("VerticalRStickP4");
+        }
         Debug.DrawRay(arm.transform.position, transform.TransformDirection(arm.transform.localPosition), Color.blue);
         //Using Jetpack
         if (playerHor >= 0.01 && JetpackFuel >= 0 || playerVer >= 0.01 && JetpackFuel >= 0 || playerHor <= -0.01 && JetpackFuel >= 0 || playerVer <= -0.01 && JetpackFuel >= 0)
