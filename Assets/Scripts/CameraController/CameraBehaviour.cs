@@ -56,6 +56,11 @@ public class CameraBehaviour : MonoBehaviour {
         Vector3 averageCenter = Vector3.zero;
         Vector3 totalPositions = Vector3.zero;
         Bounds playerBounds = new Bounds();
+        for (int i = Players.Count - 1; i > -1; i--)
+        {
+            if (Players[i] == null)
+                Players.RemoveAt(i);
+        }
 
         for (int i = 0; i < Players.Count; i++)
         {
