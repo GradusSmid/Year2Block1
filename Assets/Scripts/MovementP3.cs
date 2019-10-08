@@ -35,7 +35,7 @@ public class MovementP3 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
+        horizontalInput = Input.GetAxis("HorizontalP3");
         if (horizontalInput < 0f || horizontalInput > 0f)
         {
             GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
