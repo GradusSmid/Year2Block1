@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class MovementP2 : MonoBehaviour
+public class MovementP3 : MonoBehaviour
 {
     //Player stats
     public float speed;
@@ -23,6 +24,8 @@ public class MovementP2 : MonoBehaviour
     public GameObject Grapplinghook;
     private bool usingHook;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +35,7 @@ public class MovementP2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        horizontalInput = Input.GetAxis("HorizontalP2");
+        horizontalInput = Input.GetAxis("Horizontal");
         if (horizontalInput < 0f || horizontalInput > 0f)
         {
             GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
@@ -42,44 +45,47 @@ public class MovementP2 : MonoBehaviour
             transform.GetChild(3).gameObject.GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
         }
         //Move Left and Right
-        if (Input.GetAxis("HorizontalP2") >= 0.90f || Input.GetAxis("HorizontalP2") <= -0.90f)
+        horizontalInput = Input.GetAxis("HorizontalP3");
+
+        if (Input.GetAxis("HorizontalP3") >= 0.90f || Input.GetAxis("HorizontalP3") <= -0.90f)
         {
             speed = 15;
         }
-        else if (Input.GetAxis("HorizontalP2") >= 0.60f || Input.GetAxis("HorizontalP2") <= -0.60f)
+        else if (Input.GetAxis("HorizontalP3") >= 0.60f || Input.GetAxis("HorizontalP3") <= -0.60f)
         {
             speed = 10;
         }
-        
-        else speed = 5;
-        float translation = Input.GetAxis("HorizontalP2") * speed;
+        else
+            speed = 5;
+
+        float translation = Input.GetAxis("HorizontalP3") * speed;
 
         translation *= Time.deltaTime;
 
         transform.Translate(translation, 0, 0);
-
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down), Color.blue);
         //Jump
         if (isGrounded == true)
         {
-            float jump = Input.GetAxis("JumpP2") * jumpspeed;
+            float jump = Input.GetAxis("JumpP3") * jumpspeed * 10;
 
             jump *= Time.deltaTime;
 
             rb.AddForce(Vector3.up * jump, ForceMode2D.Impulse);
 
         }
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), 1.1f))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), 1.2f))
         {
             isGrounded = true;
+
         }
         else
             isGrounded = false;
 
         //Arm movement
 
-        arm.transform.localPosition = new Vector3(Input.GetAxis("HorizontalRStickP2"), Input.GetAxis("VerticalRStickP2"), 0).normalized;
+        arm.transform.localPosition = new Vector3(Input.GetAxis("HorizontalRStickP3"), Input.GetAxis("VerticalRStickP3"), 0).normalized;
         arm.transform.rotation = Quaternion.identity;
-
     }
     //Getting the Jetpack
     void OnTriggerEnter2D(Collider2D col)
@@ -101,6 +107,7 @@ public class MovementP2 : MonoBehaviour
             usingHammer = true;
             handIsEmpty = false;
         }
+
         if (col.gameObject.tag == ("Hook") && usingHook == false && handIsEmpty == true)
         {
             Debug.Log("Swinging");
@@ -124,9 +131,7 @@ public class MovementP2 : MonoBehaviour
 
     IEnumerator Die()
     {
-        Debug.Log("Start wait");
         yield return new WaitForSeconds(1);
-        Debug.Log("Die now");
         Destroy(this.gameObject);
         Time.timeScale = 0.75f;
         yield return new WaitForSeconds(1);
@@ -134,4 +139,3 @@ public class MovementP2 : MonoBehaviour
         yield return null;
     }
 }
-

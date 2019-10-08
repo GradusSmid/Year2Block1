@@ -25,8 +25,14 @@ public class RopeSystem : MonoBehaviour
     public GameObject player;
     private float playerHor;
     private float playerVer;
-    private bool fireButton;
+    private bool fireButtonDown;
+    private bool fireButtonUp;
+    public bool Grounded;
 
+    //add collision to line
+    private Vector3 startPos;
+    private Vector3 endPos;
+    private bool rotated;
     void Start()
     {
         // 2
@@ -49,26 +55,54 @@ public class RopeSystem : MonoBehaviour
 
         if (player.name == "Player 1")
         {
+            
             playerHor = Input.GetAxis("HorizontalRStick");
             playerVer = Input.GetAxis("VerticalRStick");
-            fireButton = Input.GetButtonDown("Fire1");
+            fireButtonDown = Input.GetButtonDown("Fire1");
+            fireButtonUp = Input.GetButtonUp("Fire1");
+            Grounded = player.GetComponent<Movement>().isGrounded;
+
         }
         if (player.name == "Player 2")
         {
             playerHor = Input.GetAxis("HorizontalRStickP2");
             playerVer = Input.GetAxis("VerticalRStickP2");
-            fireButton = Input.GetButtonDown("Fire1P2");
+            fireButtonDown = Input.GetButtonDown("Fire1P2");
+            fireButtonUp = Input.GetButtonUp("Fire1P2");
+            Grounded = transform.parent.gameObject.GetComponent<MovementP2>().isGrounded;
         }
+        if (player.name == "Player 3")
+        {
+            playerHor = Input.GetAxis("HorizontalRStickP3");
+            playerVer = Input.GetAxis("VerticalRStickP3");
+            fireButtonDown = Input.GetButtonDown("Fire1P3");
+            fireButtonUp = Input.GetButtonUp("Fire1P3");
+            Grounded = transform.parent.gameObject.GetComponent<MovementP3>().isGrounded;
+        }
+        if (player.name == "Player 4")
+        {
+            playerHor = Input.GetAxis("HorizontalRStickP4");
+            playerVer = Input.GetAxis("VerticalRStickP4");
+            fireButtonDown = Input.GetButtonDown("Fire1P4");
+            fireButtonUp = Input.GetButtonUp("Fire1P4");
+            Grounded = transform.parent.gameObject.GetComponent<MovementP4>().isGrounded;
+        }
+
         var aimAngle = Mathf.Atan2(playerVer, playerHor);
         if (aimAngle < 0f)
         {
             aimAngle = Mathf.PI * 2 + aimAngle;
+        }
+        if(playerVer == 0 && playerHor == 0)
+        {
+            crosshairSprite.enabled = false;
         }
 
         // 4
         var aimDirection = Quaternion.Euler(0, 0, aimAngle * Mathf.Rad2Deg) * Vector2.right;
         // 5
         playerPosition = transform.position;
+        startPos = playerPosition;
 
         // 6
         if (!ropeAttached)
@@ -81,15 +115,36 @@ public class RopeSystem : MonoBehaviour
         }
         HandleInput(aimDirection);
         UpdateRopePositions();
+        endPos = ropeHingeAnchor.transform.position;
+        if (ropeRenderer.transform.Find("Collider") == true)
+        {
+            BoxCollider2D col = ropeRenderer.transform.GetChild(0).GetComponent<BoxCollider2D>();
+            float lineLength = Vector3.Distance(startPos, endPos); // length of line
+            col.size = new Vector3(lineLength, 0.1f, 1f); // size of collider is set where X is length of line, Y is width of line, Z will be set as per requirement
+            Vector3 midPoint = (startPos + endPos) / 2;
+            col.transform.position = midPoint; // setting position of collider object
+                                               // Following lines calculate the angle between startPos and endPos
+            float angle = (Mathf.Abs(startPos.y - endPos.y) / Mathf.Abs(startPos.x - endPos.x));
+            if ((startPos.y < endPos.y && startPos.x > endPos.x) || (endPos.y < startPos.y && endPos.x > startPos.x))
+            {
+                angle *= -1;
+            }
+            angle = Mathf.Rad2Deg * Mathf.Atan(angle);
+            if (rotated == false)
+            {
+                col.transform.Rotate(0, 0, angle);
+                rotated = true;
+            }
+        }
 
     }
     private void SetCrosshairPosition(float aimAngle)
     {
-        if (!crosshairSprite.enabled)
+        if (!crosshairSprite.enabled && aimAngle != 0)
         {
             crosshairSprite.enabled = true;
         }
-
+        
         var x = transform.position.x + 1f * Mathf.Cos(aimAngle);
         var y = transform.position.y + 1f * Mathf.Sin(aimAngle);
 
@@ -99,12 +154,12 @@ public class RopeSystem : MonoBehaviour
     // 1
     private void HandleInput(Vector2 aimDirection)
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (fireButtonDown)
         {
             // 2
             if (ropeAttached) return;
             ropeRenderer.enabled = true;
-
+            addColliderToLine();
             var hit = Physics2D.Raycast(playerPosition, aimDirection, ropeMaxCastDistance, ropeLayerMask);
 
             // 3
@@ -115,7 +170,7 @@ public class RopeSystem : MonoBehaviour
                 {
                     // 4
                     // Jump slightly to distance the player a little from the ground after grappling to something.
-                    transform.GetComponentInParent<Rigidbody2D>().AddForce(new Vector2(0f, 2f), ForceMode2D.Impulse);
+                   // transform.GetComponentInParent<Rigidbody2D>().AddForce(new Vector2(0f, 2f), ForceMode2D.Impulse);
                     ropePositions.Add(hit.point);
                     ropeJoint.distance = Vector2.Distance(playerPosition, hit.point);
                     ropeJoint.enabled = true;
@@ -131,10 +186,11 @@ public class RopeSystem : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonUp("Fire1"))
+        if (fireButtonUp)
         {
             ResetRope();
         }
+
     }
 
     // 6
@@ -148,6 +204,8 @@ public class RopeSystem : MonoBehaviour
         ropeRenderer.SetPosition(1, transform.position);
         ropePositions.Clear();
         ropeHingeAnchorSprite.enabled = false;
+        Destroy(ropeRenderer.transform.GetChild(0).gameObject);
+        rotated = false;
     }
 
     private void UpdateRopePositions()
@@ -160,7 +218,7 @@ public class RopeSystem : MonoBehaviour
 
         // 2
         ropeRenderer.positionCount = ropePositions.Count + 1;
-
+        
         // 3
         for (var i = ropeRenderer.positionCount - 1; i >= 0; i--)
         {
@@ -211,5 +269,25 @@ public class RopeSystem : MonoBehaviour
         }
     }
 
-
+    private void addColliderToLine()
+    {
+        Debug.Log("Add Collider");
+        if (ropeRenderer.transform.Find("Collider") == false && Grounded == true)
+        {
+            BoxCollider2D col = new GameObject("Collider").AddComponent<BoxCollider2D>();
+            col.transform.parent = ropeRenderer.transform; // Collider is added as child object of line
+            float lineLength = Vector3.Distance(startPos, endPos); // length of line
+            col.size = new Vector3(lineLength, 0.1f, 1f); // size of collider is set where X is length of line, Y is width of line, Z will be set as per requirement
+            Vector3 midPoint = (startPos + endPos) / 2;
+            col.transform.position = midPoint; // setting position of collider object
+                                               // Following lines calculate the angle between startPos and endPos
+            float angle = (Mathf.Abs(startPos.y - endPos.y) / Mathf.Abs(startPos.x - endPos.x));
+            if ((startPos.y < endPos.y && startPos.x > endPos.x) || (endPos.y < startPos.y && endPos.x > startPos.x))
+            {
+                angle *= -1;
+            }
+            angle = Mathf.Rad2Deg * Mathf.Atan(angle);
+            col.transform.Rotate(0, 0, angle);
+        }
+    }
 }
