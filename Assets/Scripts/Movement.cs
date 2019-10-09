@@ -46,7 +46,7 @@ public class Movement : MonoBehaviour
             transform.GetChild(2).gameObject.GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
             transform.GetChild(3).gameObject.GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
         }
-            if (Input.GetAxis("Horizontal") >= 0.90f || Input.GetAxis("Horizontal") <= -0.90f)
+        if (Input.GetAxis("Horizontal") >= 0.90f || Input.GetAxis("Horizontal") <= -0.90f)
         {
             speed = 15;
         }
@@ -123,7 +123,7 @@ public class Movement : MonoBehaviour
             GameObject ChildShield = Instantiate(shield, arm.transform.position, Quaternion.identity);
             ChildShield.transform.parent = arm.transform;
             usingShield = true;
-            handIsEmpty = false;
+            handIsEmpty = false; 
         }
     }
     private void OnBecameInvisible()
