@@ -2,35 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VehicleAccess : MonoBehaviour {
-    private bool touchingBooster = false;
+public class BoosterScript : MonoBehaviour {
 
-    public GameObject Player;
+    public ParticleSystem BoosterParticles;
     // Update is called once per frame
-    void Update()
+
+
+    void OnTriggerStay2D(Collider2D other)//other here is where we check the thing that colides.
     {
-
-            //check for player's collision with game object tagged Booster
-            if (touchingBooster)
-            {
-                
-            }
-
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Booster")
+        if (other.gameObject.tag == "Player")//if the other is tagged with player, do the following.
         {
-            touchingBooster = true;
+            Debug.Log("working");
+
+            //boost player or object up
+            other.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 20);
+            //play animation/particle effect
+            BoosterParticles.loop = true;
+            BoosterParticles.Play();
         }
     }
 
-    void OnTriggerExit(Collider other)
+    void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag == "Booster")
+        if (other.gameObject.tag == "Player")
         {
-            touchingBooster = false;
+
+            //turn off patricles
+            BoosterParticles.loop = false;
         }
     }
 }
