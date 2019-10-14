@@ -18,7 +18,7 @@ public class Hammer : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         Vector3 forceDirection;
-        if (col.gameObject.tag == "Player")
+        if (col.gameObject.tag == "Player" && Input.GetButtonDown("Fire1"))
         {
             Debug.Log("Smashh");
             forceDirection = col.transform.position - transform.position;
