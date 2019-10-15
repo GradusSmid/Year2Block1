@@ -84,7 +84,10 @@ public class Movement : MonoBehaviour
         //Arm movement
 
         arm.transform.localPosition = new Vector3(Input.GetAxis("HorizontalRStick"), Input.GetAxis("VerticalRStick"), 0).normalized;
-        arm.transform.rotation = Quaternion.identity;
+
+        // Smoothly tilts a transform towards a target rotation.
+        float angle = Mathf.Atan2(Input.GetAxis("HorizontalRStick"), -Input.GetAxis("VerticalRStick")) * Mathf.Rad2Deg;
+        arm.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
     //Getting the Jetpack
     void OnTriggerEnter2D(Collider2D col)
