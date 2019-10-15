@@ -9,6 +9,7 @@ public class MovementP3 : MonoBehaviour
     public float speed;
     public float jumpspeed;
     public bool isGrounded;
+    private SpriteRenderer sprite;
     private Rigidbody2D rb;
     public GameObject arm;
     private bool handIsEmpty = true;
@@ -30,6 +31,7 @@ public class MovementP3 : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -74,7 +76,9 @@ public class MovementP3 : MonoBehaviour
             rb.AddForce(Vector3.up * jump, ForceMode2D.Impulse);
 
         }
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), 1.2f))
+        RaycastHit2D hit;
+        hit = Physics2D.Raycast(transform.position - new Vector3(0, sprite.bounds.extents.y + 0.5f, 0), Vector2.down, 0.1f);
+        if (hit)
         {
             isGrounded = true;
 
