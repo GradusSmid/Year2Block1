@@ -15,17 +15,16 @@ public class Hammer : MonoBehaviour
     {
         
     }
-    private void OnTriggerEnter2D(Collider2D col)
+    private void OnTriggerStay2D(Collider2D col)
     {
         Vector3 forceDirection;
-        if (Input.GetButtonDown("Fire1"))
+        
+        if (col.gameObject.tag == "Player" && Input.GetButtonDown("Fire1"))
         {
-            if (col.gameObject.tag == "Player")
-            {
-                Debug.Log("Smashh");
-                forceDirection = col.transform.position - transform.position;
-                col.gameObject.GetComponent<Rigidbody2D>().AddForceAtPosition(forceDirection.normalized * 250, transform.position);
+            Debug.Log("Smashh");
+            forceDirection = col.transform.position - transform.position;
+            col.gameObject.GetComponentInParent<Rigidbody2D>().AddForceAtPosition(forceDirection.normalized * 500, transform.position);
             }
-        }
+           
     }
 }
