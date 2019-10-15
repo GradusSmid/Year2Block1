@@ -17,7 +17,7 @@ public class AnchorMovement : MonoBehaviour
     void FixedUpdate()
     {
         //Every player's X value is added up then defided by full number of players. This is now the Camera Anchor's Y value.
-        MainCamera.GetComponent.transform.position.x = Player1.GetComponent.transform.x; //
+       // MainCamera.GetComponent.transform.position.x = Player1.GetComponent.transform.x; //
         //Every player's Y value is added up then defided by full number of players. This is now the Camera Anchor's Y value.
     }
 }
