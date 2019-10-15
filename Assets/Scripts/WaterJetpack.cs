@@ -54,15 +54,15 @@ public class WaterJetpack : MonoBehaviour
             playerHor = Input.GetAxis("HorizontalRStickP4");
             playerVer = Input.GetAxis("VerticalRStickP4");
         }
-        Debug.DrawRay(arm.transform.position, transform.TransformDirection(arm.transform.localPosition), Color.blue);
+        Debug.DrawRay(arm.transform.position,arm.transform.localPosition , Color.blue);
         //Using Jetpack
         if (playerHor >= 0.01 && JetpackFuel >= 0 && Input.GetButton("Fire1") || playerVer >= 0.01 && JetpackFuel >= 0 && Input.GetButton("Fire1") || playerHor <= -0.01 && JetpackFuel >= 0 && Input.GetButton("Fire1") || playerVer <= -0.01 && JetpackFuel >= 0 && Input.GetButton("Fire1"))
         {
-            rb.AddForce(-arm.transform.localPosition * 18);
+            rb.AddForce(-arm.transform.localPosition * 20);
             lr.enabled = true;
             JetpackFuel--;
             
-            RaycastHit2D hit = Physics2D.Raycast(arm.transform.position, transform.TransformDirection(arm.transform.localPosition));
+            RaycastHit2D hit = Physics2D.Raycast(arm.transform.position, arm.transform.localPosition, 10);
             //hit other players
             if (hit.collider != null)
             {
@@ -73,7 +73,7 @@ public class WaterJetpack : MonoBehaviour
                     if (hit.collider.gameObject.tag == "Player" || hit.collider.gameObject.tag == "Player")
                     {
                         forceDirection = hit.transform.position - transform.position;
-                        hit.rigidbody.AddForceAtPosition(forceDirection.normalized * 18, transform.position);
+                        hit.rigidbody.AddForceAtPosition(forceDirection.normalized * 15, transform.position);
                     }
                 }
                 else

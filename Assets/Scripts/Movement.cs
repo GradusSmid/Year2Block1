@@ -13,6 +13,7 @@ public class Movement : MonoBehaviour
     public GameObject arm;
     private bool handIsEmpty = true;
     private float horizontalInput;
+    private SpriteRenderer sprite;
     //Jetpack values
     public GameObject Jetpack;
     private bool usingJetpack;
@@ -31,6 +32,7 @@ public class Movement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -62,7 +64,7 @@ public class Movement : MonoBehaviour
         translation *= Time.deltaTime;
 
         transform.Translate(translation, 0, 0);
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down), Color.blue);
+
         //Jump
         if (isGrounded == true)
         {
@@ -73,7 +75,9 @@ public class Movement : MonoBehaviour
             rb.AddForce(Vector3.up * jump, ForceMode2D.Impulse);
 
         }
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), 1.2f))
+        RaycastHit2D hit;
+        hit = Physics2D.Raycast(transform.position - new Vector3(0, sprite.bounds.extents.y + 0.5f, 0), Vector2.down, 0.1f);
+        if (hit)
         {
             isGrounded = true;
 
@@ -85,7 +89,7 @@ public class Movement : MonoBehaviour
 
         arm.transform.localPosition = new Vector3(Input.GetAxis("HorizontalRStick"), Input.GetAxis("VerticalRStick"), 0).normalized;
 
-        // Smoothly tilts a transform towards a target rotation.
+        // Rotation of arm
         float angle = Mathf.Atan2(Input.GetAxis("HorizontalRStick"), -Input.GetAxis("VerticalRStick")) * Mathf.Rad2Deg;
         arm.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
