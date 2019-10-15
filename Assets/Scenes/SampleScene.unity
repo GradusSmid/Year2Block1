@@ -883,7 +883,7 @@ GameObject:
   - component: {fileID: 519420030}
   - component: {fileID: 519420034}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: MainCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1848,6 +1848,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16a56f363c39b1c488f1c94989a595a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player1: {fileID: 0}
+  Player2: {fileID: 0}
+  Player3: {fileID: 0}
+  Player4: {fileID: 0}
 --- !u!1 &1175010305
 GameObject:
   m_ObjectHideFlags: 0
