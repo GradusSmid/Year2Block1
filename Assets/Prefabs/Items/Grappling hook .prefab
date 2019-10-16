@@ -103,8 +103,9 @@ MonoBehaviour:
   ropeRenderer: {fileID: 8649759259249687930}
   ropeLayerMask:
     serializedVersion: 2
-    m_Bits: 513
+    m_Bits: 4294967295
   player: {fileID: 0}
+  Grounded: 0
 --- !u!1 &1060555141632276611
 GameObject:
   m_ObjectHideFlags: 0

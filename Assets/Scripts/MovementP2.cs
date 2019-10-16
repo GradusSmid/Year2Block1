@@ -23,7 +23,9 @@ public class MovementP2 : MonoBehaviour
     public bool isSwinging;
     public GameObject Grapplinghook;
     private bool usingHook;
-
+    //Shield values
+    public GameObject shield;
+    private bool usingShield;
     // Start is called before the first frame update
     void Start()
     {
@@ -117,6 +119,15 @@ public class MovementP2 : MonoBehaviour
             usingHook = true;
             handIsEmpty = false;
             GetComponent<DistanceJoint2D>().enabled = true;
+        }
+
+        if (col.gameObject.tag == ("Shield") && usingShield == false && handIsEmpty == true)
+        {
+            Debug.Log("Captain America my dudes");
+            GameObject ChildShield = Instantiate(shield, arm.transform.position, Quaternion.identity);
+            ChildShield.transform.parent = arm.transform;
+            usingShield = true;
+            handIsEmpty = false;
         }
     }
     private void OnBecameInvisible()
