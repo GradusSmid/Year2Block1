@@ -75,9 +75,18 @@ public class WaterJetpack : MonoBehaviour
                         forceDirection = hit.transform.position - transform.position;
                         hit.rigidbody.AddForceAtPosition(forceDirection.normalized * 25, transform.position);
                     }
-                }
+            }
                 else
                     lr.SetPosition(1, arm.transform.localPosition * 5000);
+        }
+
+        RaycastHit2D col = Physics2D.Raycast(player.transform.position, Vector2.down, 1.2f);
+        if (col.collider.tag == "Waterfuel")
+        {
+            if (JetpackFuel <= 500)
+            {
+                JetpackFuel++;
             }
+        } 
     }
 }

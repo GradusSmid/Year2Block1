@@ -8,7 +8,7 @@ public class CrumblingPlatform : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-
+            StartCoroutine("Destroy");
         }
     }
 

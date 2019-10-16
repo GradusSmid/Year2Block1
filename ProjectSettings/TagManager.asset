@@ -8,6 +8,7 @@ TagManager:
   - Hammer
   - Hook
   - Shield
+  - Waterfuel
   layers:
   - Default
   - TransparentFX
