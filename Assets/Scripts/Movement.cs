@@ -66,14 +66,11 @@ public class Movement : MonoBehaviour
         transform.Translate(translation, 0, 0);
 
         //Jump
-        if (isGrounded == true)
+        //Jump
+        if ((isGrounded == true) && (Input.GetButtonDown("Jump") == true))
         {
-            float jump = Input.GetAxis("Jump") * jumpspeed * 30;
-
-            jump *= Time.deltaTime;
-
-            rb.AddForce(Vector3.up * jump, ForceMode2D.Impulse);
-
+            Vector3 jump = new Vector3(0, jumpspeed, 0);
+            rb.AddForce(jump, ForceMode2D.Impulse);
         }
         RaycastHit2D hit;
         hit = Physics2D.Raycast(transform.position - new Vector3(0, sprite.bounds.extents.y + 0.5f, 0), Vector2.down, 0.1f);
