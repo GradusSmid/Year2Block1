@@ -68,7 +68,7 @@ public class Movement : MonoBehaviour
         //Jump
         if (isGrounded == true)
         {
-            float jump = Input.GetAxis("Jump") * jumpspeed * 10;
+            float jump = Input.GetAxis("Jump") * jumpspeed * 30;
 
             jump *= Time.deltaTime;
 

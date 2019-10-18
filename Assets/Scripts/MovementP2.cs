@@ -65,7 +65,7 @@ public class MovementP2 : MonoBehaviour
         //Jump
         if (isGrounded == true)
         {
-            float jump = Input.GetAxis("JumpP2") * jumpspeed * 10;
+            float jump = Input.GetAxis("JumpP2") * jumpspeed * 30;
 
             jump *= Time.deltaTime;
 
