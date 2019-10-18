@@ -80,12 +80,14 @@ public class WaterJetpack : MonoBehaviour
                     lr.SetPosition(1, arm.transform.localPosition * 5000);
         }
 
+
+        //This is double.
         RaycastHit2D col = Physics2D.Raycast(player.transform.position, Vector2.down, 1.2f);
         if (col.collider.tag == "Waterfuel")
         {
             if (JetpackFuel <= 500)
             {
-                JetpackFuel++;
+                JetpackFuel=500;
             }
         } 
     }
