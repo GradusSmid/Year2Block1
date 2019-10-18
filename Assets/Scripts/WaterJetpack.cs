@@ -58,7 +58,7 @@ public class WaterJetpack : MonoBehaviour
         //Using Jetpack
         if (playerHor >= 0.01 && JetpackFuel >= 0 && Input.GetButton("Fire1") || playerVer >= 0.01 && JetpackFuel >= 0 && Input.GetButton("Fire1") || playerHor <= -0.01 && JetpackFuel >= 0 && Input.GetButton("Fire1") || playerVer <= -0.01 && JetpackFuel >= 0 && Input.GetButton("Fire1"))
         {
-            rb.AddForce(-arm.transform.localPosition * 25);
+            rb.AddForce(-arm.transform.localPosition * 28);
             lr.enabled = true;
             JetpackFuel--;
             
