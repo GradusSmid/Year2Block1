@@ -7,7 +7,7 @@ public class Movement : MonoBehaviour
 {
     //Player stats
     public float speed;
-    public float jumpspeed;
+    public float jumpspeed = 30;
     public bool isGrounded;
     private Rigidbody2D rb;
     public GameObject arm;
