@@ -10,13 +10,13 @@ public class RopeSystem : MonoBehaviour
     public DistanceJoint2D ropeJoint;
     public Transform crosshair;
     public SpriteRenderer crosshairSprite;
-    public Movement playerMovement;
     private bool ropeAttached;
     private Vector2 playerPosition;
     private Rigidbody2D ropeHingeAnchorRb;
     private SpriteRenderer ropeHingeAnchorSprite;
 
     public LineRenderer ropeRenderer;
+
     public LayerMask ropeLayerMask;
     private float ropeMaxCastDistance = 20f;
     private List<Vector2> ropePositions = new List<Vector2>();
@@ -37,8 +37,6 @@ public class RopeSystem : MonoBehaviour
     {
         // 2
         ropeJoint = transform.GetComponentInParent<DistanceJoint2D>();
-        
-        playerMovement = transform.GetComponentInParent<Movement>();
         ropeJoint.enabled = false;
         playerPosition = transform.parent.position;
         ropeHingeAnchorRb = ropeHingeAnchor.GetComponent<Rigidbody2D>();
@@ -46,6 +44,7 @@ public class RopeSystem : MonoBehaviour
         ropeJoint.connectedBody = ropeHingeAnchorRb;
         player = transform.parent.gameObject.transform.parent.gameObject;
         /////
+        ropeRenderer = transform.GetComponentInParent<LineRenderer>();
 
     }
 
@@ -61,23 +60,24 @@ public class RopeSystem : MonoBehaviour
             fireButtonDown = Input.GetButtonDown("Fire1");
             fireButtonUp = Input.GetButtonUp("Fire1");
             Grounded = player.GetComponent<Movement>().isGrounded;
-
         }
+
         if (player.name == "Player 2")
         {
             playerHor = Input.GetAxis("HorizontalRStickP2");
             playerVer = Input.GetAxis("VerticalRStickP2");
             fireButtonDown = Input.GetButtonDown("Fire1P2");
             fireButtonUp = Input.GetButtonUp("Fire1P2");
-            Grounded = transform.parent.gameObject.GetComponent<MovementP2>().isGrounded;
+            Grounded = player.GetComponent<MovementP2>().isGrounded;
         }
+
         if (player.name == "Player 3")
         {
             playerHor = Input.GetAxis("HorizontalRStickP3");
             playerVer = Input.GetAxis("VerticalRStickP3");
             fireButtonDown = Input.GetButtonDown("Fire1P3");
             fireButtonUp = Input.GetButtonUp("Fire1P3");
-            Grounded = transform.parent.gameObject.GetComponent<MovementP3>().isGrounded;
+            Grounded = player.GetComponent<MovementP3>().isGrounded;
         }
         if (player.name == "Player 4")
         {
@@ -85,7 +85,7 @@ public class RopeSystem : MonoBehaviour
             playerVer = Input.GetAxis("VerticalRStickP4");
             fireButtonDown = Input.GetButtonDown("Fire1P4");
             fireButtonUp = Input.GetButtonUp("Fire1P4");
-            Grounded = transform.parent.gameObject.GetComponent<MovementP4>().isGrounded;
+            Grounded = player.GetComponent<MovementP4>().isGrounded;
         }
 
         var aimAngle = Mathf.Atan2(playerVer, playerHor);
@@ -198,13 +198,12 @@ public class RopeSystem : MonoBehaviour
     {
         ropeJoint.enabled = false;
         ropeAttached = false;
-        playerMovement.isSwinging = false;
         ropeRenderer.positionCount = 2;
         ropeRenderer.SetPosition(0, transform.position);
         ropeRenderer.SetPosition(1, transform.position);
         ropePositions.Clear();
         ropeHingeAnchorSprite.enabled = false;
-        Destroy(ropeRenderer.transform.GetChild(0).gameObject);
+        Destroy(ropeRenderer.transform.GetChild(2).gameObject);
         rotated = false;
     }
 
@@ -287,7 +286,7 @@ public class RopeSystem : MonoBehaviour
                 angle *= -1;
             }
             angle = Mathf.Rad2Deg * Mathf.Atan(angle);
-            col.transform.Rotate(0, 0, angle);
+    
         }
     }
 }
