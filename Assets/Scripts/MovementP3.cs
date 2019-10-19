@@ -70,14 +70,10 @@ public class MovementP3 : MonoBehaviour
         transform.Translate(translation, 0, 0);
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down), Color.blue);
         //Jump
-        if (isGrounded == true)
+        if ((isGrounded == true) && (Input.GetButtonDown("JumpP3") == true))
         {
-            float jump = Input.GetAxis("JumpP3") * jumpspeed * 10;
-
-            jump *= Time.deltaTime;
-
-            rb.AddForce(Vector3.up * jump, ForceMode2D.Impulse);
-
+            Vector3 jump = new Vector3(0, jumpspeed, 0);
+            rb.AddForce(jump, ForceMode2D.Impulse);
         }
         RaycastHit2D hit;
         hit = Physics2D.Raycast(transform.position - new Vector3(0, sprite.bounds.extents.y + 0.5f, 0), Vector2.down, 0.1f);

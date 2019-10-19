@@ -12,9 +12,9 @@ public class RefillWaterTank : MonoBehaviour
     }
     void OnTriggerStay2D(Collider2D col)
     {
-        if(col.gameObject.name == "Player 1")
+        if(col.gameObject.tag == "Player")
         {
-            GetComponentInChildren<WaterJetpack>().JetpackFuel++;
+            GetComponentInChildren<WaterJetpack>().JetpackFuel=500;
             Debug.Log(GetComponentInChildren<WaterJetpack>().JetpackFuel);
         }
         

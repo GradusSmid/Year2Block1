@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+  
 public class WaterJetpack : MonoBehaviour
 {
     public LineRenderer lr;
@@ -58,7 +58,7 @@ public class WaterJetpack : MonoBehaviour
         //Using Jetpack
         if (playerHor >= 0.01 && JetpackFuel >= 0 && Input.GetButton("Fire1") || playerVer >= 0.01 && JetpackFuel >= 0 && Input.GetButton("Fire1") || playerHor <= -0.01 && JetpackFuel >= 0 && Input.GetButton("Fire1") || playerVer <= -0.01 && JetpackFuel >= 0 && Input.GetButton("Fire1"))
         {
-            rb.AddForce(-arm.transform.localPosition * 25);
+            rb.AddForce(-arm.transform.localPosition * 28);
             lr.enabled = true;
             JetpackFuel--;
             
@@ -80,12 +80,14 @@ public class WaterJetpack : MonoBehaviour
                     lr.SetPosition(1, arm.transform.localPosition * 5000);
         }
 
+
+        //This is double.
         RaycastHit2D col = Physics2D.Raycast(player.transform.position, Vector2.down, 1.2f);
         if (col.collider.tag == "Waterfuel")
         {
             if (JetpackFuel <= 500)
             {
-                JetpackFuel++;
+                JetpackFuel=500;
             }
         } 
     }
