@@ -12,7 +12,7 @@ public class reloadScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
+            Debug.Log("Reloading level");
         }
     }
 }
