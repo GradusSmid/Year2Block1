@@ -56,7 +56,7 @@ public class Shield : MonoBehaviour
         {
             GetComponent<BoxCollider2D>().isTrigger = false;
 
-            if(allowedToMove = player.GetComponent<Movement>())
+            if (allowedToMove = player.GetComponent<Movement>())
             {
                 player.GetComponent<Movement>().enabled = false;
                 player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
@@ -69,11 +69,13 @@ public class Shield : MonoBehaviour
             if (allowedToMove = player.GetComponent<Movement>())
             {
                 player.GetComponent<Movement>().enabled = true;
-                player.GetComponent<Rigidbody2D>().gravityScale = 1;
+                player.GetComponent<Rigidbody2D>().gravityScale = 3;
+
             }
         }
-            
-
-        
+        else if (!fireButtonUp)
+        {
+            player.GetComponent<Rigidbody2D>().gravityScale = 10;
+        }
     }
 }
