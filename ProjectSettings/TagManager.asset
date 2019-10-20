@@ -9,6 +9,7 @@ TagManager:
   - Hook
   - Shield
   - Waterfuel
+  - Item
   layers:
   - Default
   - TransparentFX
