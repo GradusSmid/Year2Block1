@@ -11,6 +11,7 @@ public class Movement : MonoBehaviour
     public bool isGrounded;
     private Rigidbody2D rb;
     public GameObject arm;
+    public GameObject circle = GameObject.Find("playerCircle1");
     private bool handIsEmpty = true;
     private float horizontalInput;
     private SpriteRenderer sprite;
@@ -81,16 +82,37 @@ public class Movement : MonoBehaviour
         }
         else
             isGrounded = false;
+        
+
 
         //Arm movement
-
+       
         arm.transform.localPosition = new Vector3(Input.GetAxis("HorizontalRStick"), Input.GetAxis("VerticalRStick"), 0).normalized;
 
         // Rotation of arm
         float angle = Mathf.Atan2(Input.GetAxis("HorizontalRStick"), -Input.GetAxis("VerticalRStick")) * Mathf.Rad2Deg;
         arm.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        //Aiming circle
+        circle.transform.localPosition = new Vector3(Input.GetAxis("HorizontalRStick"), Input.GetAxis("VerticalRStick"), 0).normalized;
+
+//__________________________________________________________________________________________________________________________________________
+        //Rotation of PlayerCircle
+        circle.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        //fading in or out the Aiming circle
+        if ((Input.GetAxis("HorizontalRStick") == 0) || (Input.GetAxis("VerticalRStick") == 0))
+        {
+            //fade in the aiming circle
+        }
+        else
+        {
+            //fade out the aiming circle
+        }
+//______________________________________________________________________________________________________________________________________
+
     }
-    //Getting the Jetpack
+        //Getting the Jetpack
     void OnTriggerEnter2D(Collider2D col)
     { 
         if (col.gameObject.tag == "Jetpack" && usingJetpack == false && handIsEmpty == true)
