@@ -15,7 +15,7 @@ public class BoosterScript : MonoBehaviour {
 
             //boost player or object up
 
-            other.gameObject.GetComponent<Rigidbody2D>().AddRelativeForce(transform.up* 80);
+            other.gameObject.GetComponent<Rigidbody2D>().AddRelativeForce(transform.up* 120);
 
             //play animation/particle effect
             BoosterParticles.loop = true;
