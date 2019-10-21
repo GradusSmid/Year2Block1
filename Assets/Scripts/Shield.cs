@@ -72,14 +72,8 @@ public class Shield : MonoBehaviour
 
                 player.GetComponent<Rigidbody2D>().gravityScale = 6;
 
-                player.GetComponent<Rigidbody2D>().gravityScale = 3;
-
-
             }
         }
-        else if (!fireButtonUp)
-        {
-            player.GetComponent<Rigidbody2D>().gravityScale = 10;
-        }
+
     }
 }
