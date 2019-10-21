@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MovementP3 : MonoBehaviour
+public class MovementP4 : MonoBehaviour
 {
     //Player stats
     public float speed;
@@ -40,7 +40,7 @@ public class MovementP3 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        horizontalInput = Input.GetAxis("HorizontalP3");
+        horizontalInput = Input.GetAxis("HorizontalP4");
         if (horizontalInput < 0f || horizontalInput > 0f)
         {
             GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
@@ -50,27 +50,27 @@ public class MovementP3 : MonoBehaviour
             transform.GetChild(3).gameObject.GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
         }
         //Move Left and Right
-        horizontalInput = Input.GetAxis("HorizontalP3");
+        horizontalInput = Input.GetAxis("HorizontalP4");
 
-        if (Input.GetAxis("HorizontalP3") >= 0.90f || Input.GetAxis("HorizontalP3") <= -0.90f)
+        if (Input.GetAxis("HorizontalP4") >= 0.90f || Input.GetAxis("HorizontalP4") <= -0.90f)
         {
             speed = 15;
         }
-        else if (Input.GetAxis("HorizontalP3") >= 0.60f || Input.GetAxis("HorizontalP3") <= -0.60f)
+        else if (Input.GetAxis("HorizontalP4") >= 0.60f || Input.GetAxis("HorizontalP4") <= -0.60f)
         {
             speed = 10;
         }
         else
             speed = 5;
 
-        float translation = Input.GetAxis("HorizontalP3") * speed;
+        float translation = Input.GetAxis("HorizontalP4") * speed;
 
         translation *= Time.deltaTime;
 
         transform.Translate(translation, 0, 0);
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down), Color.blue);
         //Jump
-        if ((isGrounded == true) && (Input.GetButtonDown("JumpP3") == true))
+        if ((isGrounded == true) && (Input.GetButtonDown("JumpP4") == true))
         {
             Vector3 jump = new Vector3(0, jumpspeed, 0);
             rb.AddForce(jump, ForceMode2D.Impulse);
@@ -87,10 +87,10 @@ public class MovementP3 : MonoBehaviour
 
         //Arm movement
 
-        arm.transform.localPosition = new Vector3(Input.GetAxis("HorizontalRStickP3"), Input.GetAxis("VerticalRStickP3"), 0).normalized;
+        arm.transform.localPosition = new Vector3(Input.GetAxis("HorizontalRStickP4"), Input.GetAxis("VerticalRStickP4"), 0).normalized;
         arm.transform.rotation = Quaternion.identity;
         // Rotation of arm
-        float angle = Mathf.Atan2(Input.GetAxis("HorizontalRStickP3"), -Input.GetAxis("VerticalRStickP3")) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(Input.GetAxis("HorizontalRStickP4"), -Input.GetAxis("VerticalRStickP4")) * Mathf.Rad2Deg;
         arm.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
     //Getting the Jetpack
@@ -144,13 +144,4 @@ public class MovementP3 : MonoBehaviour
         StopCoroutine("Die");
     }
 
-    IEnumerator Die()
-    {
-        yield return new WaitForSeconds(1);
-        Destroy(this.gameObject);
-        Time.timeScale = 0.75f;
-        yield return new WaitForSeconds(1);
-        Time.timeScale = 1f;
-        yield return null;
-    }
 }

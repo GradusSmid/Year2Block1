@@ -1,20 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Movement : MonoBehaviour
+public class MovementP2 : MonoBehaviour
 {
     //Player stats
     public float speed;
-    public float jumpspeed = 35;
+    public float jumpspeed = 30;
     public bool isGrounded;
+    private SpriteRenderer sprite;
     private Rigidbody2D rb;
     public GameObject arm;
-    public GameObject circle;
     private bool handIsEmpty = true;
     private float horizontalInput;
-    private SpriteRenderer sprite;
     //Jetpack values
     public GameObject Jetpack;
     private bool usingJetpack;
@@ -28,22 +26,17 @@ public class Movement : MonoBehaviour
     //Shield values
     public GameObject shield;
     private bool usingShield;
-
-    private float startTime;
-
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
-        startTime = Time.time;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Move Left and Right
-        horizontalInput = Input.GetAxis("Horizontal");
+        horizontalInput = Input.GetAxis("HorizontalP2");
         if (horizontalInput < 0f || horizontalInput > 0f)
         {
             GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
@@ -52,30 +45,30 @@ public class Movement : MonoBehaviour
             transform.GetChild(2).gameObject.GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
             transform.GetChild(3).gameObject.GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
         }
-        if (Input.GetAxis("Horizontal") >= 0.90f || Input.GetAxis("Horizontal") <= -0.90f)
+        //Move Left and Right
+        if (Input.GetAxis("HorizontalP2") >= 0.90f || Input.GetAxis("HorizontalP2") <= -0.90f)
         {
             speed = 15;
         }
-        else if (Input.GetAxis("Horizontal") >= 0.60f || Input.GetAxis("Horizontal") <= -0.60f)
+        else if (Input.GetAxis("HorizontalP2") >= 0.60f || Input.GetAxis("HorizontalP2") <= -0.60f)
         {
             speed = 10;
         }
-        else
-            speed = 5;
-
-        float translation = Input.GetAxis("Horizontal") * speed;
+        
+        else speed = 5;
+        float translation = Input.GetAxis("HorizontalP2") * speed;
 
         translation *= Time.deltaTime;
 
         transform.Translate(translation, 0, 0);
 
         //Jump
-        //Jump
-        if ((isGrounded == true) && (Input.GetButtonDown("Jump") == true))
+        if ((isGrounded == true) && (Input.GetButtonDown("JumpP2") == true))
         {
             Vector3 jump = new Vector3(0, jumpspeed, 0);
             rb.AddForce(jump, ForceMode2D.Impulse);
         }
+
         RaycastHit2D hit;
         hit = Physics2D.Raycast(transform.position - new Vector3(0, sprite.bounds.extents.y + 0.5f, 0), Vector2.down, 0.1f);
         if (hit)
@@ -85,45 +78,19 @@ public class Movement : MonoBehaviour
         }
         else
             isGrounded = false;
-        
-
 
         //Arm movement
-       
-        arm.transform.localPosition = new Vector3(Input.GetAxis("HorizontalRStick"), Input.GetAxis("VerticalRStick"), 0).normalized;
 
+        arm.transform.localPosition = new Vector3(Input.GetAxis("HorizontalRStickP2"), Input.GetAxis("VerticalRStickP2"), 0).normalized;
+        arm.transform.rotation = Quaternion.identity;
         // Rotation of arm
-        float angle = Mathf.Atan2(-Input.GetAxis("HorizontalRStick"), Input.GetAxis("VerticalRStick")) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(Input.GetAxis("HorizontalRStickP2"), -Input.GetAxis("VerticalRStickP2")) * Mathf.Rad2Deg;
         arm.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-        //Aiming circle
-
-//__________________________________________________________________________________________________________________________________________
-        //Rotation of PlayerCircle
-        circle.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        float t = (Time.time - startTime) / 2f;
-        //fading in or out the Aiming circle
-        if ((Input.GetAxis("HorizontalRStick") != 0) || (Input.GetAxis("VerticalRStick") != 0))
-        {
-            //fade in the aiming circle
-            circle.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, Mathf.SmoothStep(0, 1, t));
-        }
-        else
-        {
-            //fade out the aiming circle
-            circle.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, Mathf.SmoothStep(1, 0, t));
-        }
-        Debug.Log(t);
-        if(t >= 2f)
-        {
-            t = 0;
-        }
-//      ___________________________________________________________________________________________________________________________
-
     }
-        //Getting the Jetpack
+    //Getting the Jetpack
     void OnTriggerEnter2D(Collider2D col)
-    { 
+    {
         if (col.gameObject.tag == "Jetpack" && usingJetpack == false && handIsEmpty == true)
         {
             Debug.Log("Time to fly");
@@ -133,7 +100,7 @@ public class Movement : MonoBehaviour
             handIsEmpty = false;
         }
 
-        if(col.gameObject.tag == ("Hammer") && usingHammer == false && handIsEmpty == true)
+        if (col.gameObject.tag == ("Hammer") && usingHammer == false && handIsEmpty == true)
         {
             Debug.Log("hULK SMASH");
             GameObject ChildHammer = Instantiate(hammer, arm.transform.position, Quaternion.identity);
@@ -141,15 +108,14 @@ public class Movement : MonoBehaviour
             usingHammer = true;
             handIsEmpty = false;
         }
-
-        if(col.gameObject.tag == ("Hook") && usingHook == false && handIsEmpty == true)
+        if (col.gameObject.tag == ("Hook") && usingHook == false && handIsEmpty == true)
         {
             Debug.Log("Swinging");
             GameObject childHook = Instantiate(Grapplinghook, arm.transform.position, Quaternion.identity);
             childHook.transform.parent = arm.transform;
             usingHook = true;
             handIsEmpty = false;
-            GetComponent<DistanceJoint2D>().enabled= true;
+            GetComponent<DistanceJoint2D>().enabled = true;
         }
 
         if (col.gameObject.tag == ("Shield") && usingShield == false && handIsEmpty == true)
@@ -158,27 +124,8 @@ public class Movement : MonoBehaviour
             GameObject ChildShield = Instantiate(shield, arm.transform.position, Quaternion.identity);
             ChildShield.transform.parent = arm.transform;
             usingShield = true;
-            handIsEmpty = false; 
+            handIsEmpty = false;
         }
     }
-    private void OnBecameInvisible()
-    {
-        if (this.gameObject.activeInHierarchy == true)
-        StartCoroutine("Die");
-    }
-
-    private void OnBecameVisible()
-    {
-        StopCoroutine("Die");
-    }
-
-    IEnumerator Die()
-    {
-        yield return new WaitForSeconds(1);
-        Destroy(this.gameObject);
-        Time.timeScale = 0.75f;
-        yield return new WaitForSeconds(1);
-        Time.timeScale = 1f;
-        yield return null;
-    }
 }
+

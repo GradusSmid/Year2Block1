@@ -16638,10 +16638,20 @@ PrefabInstance:
       propertyPath: m_GravityScale
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 2822290575258727849, guid: 2b31f0c7f640cca4a8c27a7c62792a24,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2822290574863347543, guid: 2b31f0c7f640cca4a8c27a7c62792a24,
         type: 3}
       propertyPath: m_LocalScale.x
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2822290575258727854, guid: 2b31f0c7f640cca4a8c27a7c62792a24,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2822290574863347540, guid: 2b31f0c7f640cca4a8c27a7c62792a24,
         type: 3}
