@@ -7,7 +7,7 @@ public class Movement : MonoBehaviour
 {
     //Player stats
     public float speed;
-    public float jumpspeed = 30;
+    public float jumpspeed = 35;
     public bool isGrounded;
     private Rigidbody2D rb;
     public GameObject arm;
@@ -34,7 +34,6 @@ public class Movement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
-        circle = GameObject.Find("playerCircle1");
     }
 
     // Update is called once per frame
@@ -67,6 +66,7 @@ public class Movement : MonoBehaviour
 
         transform.Translate(translation, 0, 0);
 
+        //Jump
         //Jump
         if ((isGrounded == true) && (Input.GetButtonDown("Jump") == true))
         {
