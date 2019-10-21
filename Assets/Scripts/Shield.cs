@@ -69,7 +69,7 @@ public class Shield : MonoBehaviour
             if (allowedToMove = player.GetComponent<Movement>())
             {
                 player.GetComponent<Movement>().enabled = true;
-                player.GetComponent<Rigidbody2D>().gravityScale = 1;
+                player.GetComponent<Rigidbody2D>().gravityScale = 6;
             }
         }
             

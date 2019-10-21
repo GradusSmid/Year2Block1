@@ -39,6 +39,7 @@ public class RopeSystem : MonoBehaviour
         ropeJoint = transform.GetComponentInParent<DistanceJoint2D>();
         ropeJoint.enabled = false;
         playerPosition = transform.parent.position;
+        ropeHingeAnchor = transform.GetChild(0).gameObject;
         ropeHingeAnchorRb = ropeHingeAnchor.GetComponent<Rigidbody2D>();
         ropeHingeAnchorSprite = ropeHingeAnchor.GetComponent<SpriteRenderer>();
         ropeJoint.connectedBody = ropeHingeAnchorRb;

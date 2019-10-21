@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5303022a35605b946bb349a637db18ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ropeHingeAnchor: {fileID: 7776855486373842756}
+  ropeHingeAnchor: {fileID: 0}
   ropeJoint: {fileID: 0}
   crosshair: {fileID: 7631328836372975503}
   crosshairSprite: {fileID: 6375186500126899572}
