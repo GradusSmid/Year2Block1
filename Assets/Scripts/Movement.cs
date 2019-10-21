@@ -29,11 +29,14 @@ public class Movement : MonoBehaviour
     public GameObject shield;
     private bool usingShield;
 
+    private float startTime;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
+        startTime = Time.time;
     }
 
     // Update is called once per frame
@@ -90,26 +93,32 @@ public class Movement : MonoBehaviour
         arm.transform.localPosition = new Vector3(Input.GetAxis("HorizontalRStick"), Input.GetAxis("VerticalRStick"), 0).normalized;
 
         // Rotation of arm
-        float angle = Mathf.Atan2(Input.GetAxis("HorizontalRStick"), -Input.GetAxis("VerticalRStick")) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(-Input.GetAxis("HorizontalRStick"), Input.GetAxis("VerticalRStick")) * Mathf.Rad2Deg;
         arm.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         //Aiming circle
-        circle.transform.localPosition = new Vector3(Input.GetAxis("HorizontalRStick"), Input.GetAxis("VerticalRStick"), 0).normalized;
 
 //__________________________________________________________________________________________________________________________________________
         //Rotation of PlayerCircle
         circle.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-
+        float t = (Time.time - startTime) / 2f;
         //fading in or out the Aiming circle
-        if ((Input.GetAxis("HorizontalRStick") == 0) || (Input.GetAxis("VerticalRStick") == 0))
+        if ((Input.GetAxis("HorizontalRStick") != 0) || (Input.GetAxis("VerticalRStick") != 0))
         {
             //fade in the aiming circle
+            circle.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, Mathf.SmoothStep(0, 1, t));
         }
         else
         {
             //fade out the aiming circle
+            circle.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, Mathf.SmoothStep(1, 0, t));
         }
-//______________________________________________________________________________________________________________________________________
+        Debug.Log(t);
+        if(t >= 2f)
+        {
+            t = 0;
+        }
+//      ___________________________________________________________________________________________________________________________
 
     }
         //Getting the Jetpack
