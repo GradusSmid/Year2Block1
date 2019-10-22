@@ -5169,12 +5169,12 @@ PrefabInstance:
     - target: {fileID: 4636042754212328582, guid: accfd3f142e35b24c918f74abdc0579e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.099998
+      value: 4.03
       objectReference: {fileID: 0}
     - target: {fileID: 4636042754212328582, guid: accfd3f142e35b24c918f74abdc0579e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.54
+      value: 3.9
       objectReference: {fileID: 0}
     - target: {fileID: 4636042754212328582, guid: accfd3f142e35b24c918f74abdc0579e,
         type: 3}
@@ -5464,6 +5464,12 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!1 &669080618 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6787980171476749927, guid: 1f494e24cd796b34b8a55e37605cba2c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1456739482}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &671310979
 GameObject:
   m_ObjectHideFlags: 0
@@ -11260,12 +11266,12 @@ PrefabInstance:
     - target: {fileID: 6787980171476749922, guid: 1f494e24cd796b34b8a55e37605cba2c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.1
+      value: 11.55
       objectReference: {fileID: 0}
     - target: {fileID: 6787980171476749922, guid: 1f494e24cd796b34b8a55e37605cba2c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.78
+      value: 7.13
       objectReference: {fileID: 0}
     - target: {fileID: 6787980171476749922, guid: 1f494e24cd796b34b8a55e37605cba2c,
         type: 3}
@@ -11431,6 +11437,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1462867598 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2170850197174985687, guid: fb6002462b84d52478a27307f60769fb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1574190300}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1463403782
 GameObject:
   m_ObjectHideFlags: 0
@@ -15591,8 +15603,11 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 8.9, y: 8.4, z: -10.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: [{fileID: 1601240696}, {fileID: 1714065398}, {fileID: 487104012}, {
-      fileID: 1730147887}]
+  m_Children:
+  - {fileID: 1601240696}
+  - {fileID: 1714065398}
+  - {fileID: 487104012}
+  - {fileID: 1730147887}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15610,9 +15625,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Players:
   - {fileID: 2079850634}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 639255332}
+  - {fileID: 1462867598}
+  - {fileID: 669080618}
   DepthUpdateSpeed: 5
   AngleUpdateSpeed: 7
   PositionUpdateSpeed: 10
