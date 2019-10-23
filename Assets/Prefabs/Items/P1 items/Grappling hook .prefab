@@ -101,8 +101,8 @@ MonoBehaviour:
   ropeJoint: {fileID: 0}
   crosshair: {fileID: 7631328836372975503}
   crosshairSprite: {fileID: 6375186500126899572}
-  edgeCollider: {fileID: 0}
-  ropeRenderer: {fileID: 0}
+  edgeCollider: {fileID: 1394673523}
+  ropeRenderer: {fileID: 8400695143275544284}
   ropeLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295

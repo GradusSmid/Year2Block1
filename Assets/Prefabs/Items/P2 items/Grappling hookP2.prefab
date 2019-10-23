@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1245192209650395770}
   - component: {fileID: 7202919564657396748}
   - component: {fileID: 8576810200906304761}
+  - component: {fileID: -2760466209417244519}
   m_Layer: 0
   m_Name: Grappling hookP2
   m_TagString: Untagged
@@ -196,12 +197,31 @@ MonoBehaviour:
   ropeJoint: {fileID: 0}
   crosshair: {fileID: 9117334808456920415}
   crosshairSprite: {fileID: 5699759216432631716}
-  ropeRenderer: {fileID: 0}
+  edgeCollider: {fileID: -2760466209417244519}
+  ropeRenderer: {fileID: 7202919564657396748}
   ropeLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
   player: {fileID: 0}
   Grounded: 0
+--- !u!68 &-2760466209417244519
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245192209650395768}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.47, y: 0}
+  - {x: 0.47, y: 0}
 --- !u!1 &1862084374533540435
 GameObject:
   m_ObjectHideFlags: 0

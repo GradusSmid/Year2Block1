@@ -25,8 +25,6 @@ public class RopeSystem : MonoBehaviour
     public GameObject player;
     private float playerHor;
     private float playerVer;
-    private bool fireButtonDown;
-    private bool fireButtonUp;
     public bool Grounded;
 
     //add collision to line
@@ -44,9 +42,7 @@ public class RopeSystem : MonoBehaviour
         ropeHingeAnchorSprite = ropeHingeAnchor.GetComponent<SpriteRenderer>();
         ropeJoint.connectedBody = ropeHingeAnchorRb;
         player = transform.parent.gameObject.transform.parent.gameObject;
-        /////
-        ropeRenderer = transform.GetComponentInParent<LineRenderer>();
-        edgeCollider = ropeRenderer.transform.GetComponent<EdgeCollider2D>();
+
 
     }
 
@@ -58,8 +54,6 @@ public class RopeSystem : MonoBehaviour
             
             playerHor = Input.GetAxis("HorizontalRStick");
             playerVer = Input.GetAxis("VerticalRStick");
-            fireButtonDown = Input.GetButtonDown("Fire1");
-            fireButtonUp = Input.GetButtonUp("Fire1");
             Grounded = player.GetComponent<Movement>().isGrounded;
         }
 
@@ -114,7 +108,7 @@ public class RopeSystem : MonoBehaviour
     // 1
     private void HandleInput(Vector2 aimDirection)
     {
-        if (fireButtonDown)
+        if (Input.GetButtonDown("Fire1"))
         {
             // 2
             if (ropeAttached) return;
@@ -147,7 +141,7 @@ public class RopeSystem : MonoBehaviour
             }
         }
 
-        if (fireButtonUp)
+        if (Input.GetButtonUp("Fire1")) 
         {
             ResetRope();
             edgeCollider.enabled = false;
