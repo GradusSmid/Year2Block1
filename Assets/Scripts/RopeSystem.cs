@@ -21,16 +21,15 @@ public class RopeSystem : MonoBehaviour
     private float ropeMaxCastDistance = 20f;
     private List<Vector2> ropePositions = new List<Vector2>();
     private bool distanceSet;
-
+    private bool firebuttonDown;
+    private bool firebuttonUp;
     public GameObject player;
     private float playerHor;
     private float playerVer;
-    public bool Grounded;
 
     //add collision to line
     private Vector3 startPos;
     private Vector3 endPos;
-    private bool rotated;
     void Start()
     {
         // 2
@@ -54,9 +53,31 @@ public class RopeSystem : MonoBehaviour
             
             playerHor = Input.GetAxis("HorizontalRStick");
             playerVer = Input.GetAxis("VerticalRStick");
-            Grounded = player.GetComponent<Movement>().isGrounded;
-        }
+            firebuttonDown = Input.GetButtonDown("Fire1");
+            firebuttonUp = Input.GetButtonUp("Fire1");
 
+        }
+        if (player.name == "Player 2")
+        {
+            playerHor = Input.GetAxis("HorizontalRStickP2");
+            playerVer = Input.GetAxis("VerticalRStickP2");
+            firebuttonDown = Input.GetButtonDown("Fire1P2");
+            firebuttonUp = Input.GetButtonUp("Fire1P2");
+        }
+        if (player.name == "Player 3")
+        {
+            playerHor = Input.GetAxis("HorizontalRStickP3");
+            playerVer = Input.GetAxis("VerticalRStickP3");
+            firebuttonDown = Input.GetButtonDown("Fire1P3");
+            firebuttonUp = Input.GetButtonUp("Fire1P3");
+        }
+        if (player.name == "Player 4")
+        {
+            playerHor = Input.GetAxis("HorizontalRStickP4");
+            playerVer = Input.GetAxis("VerticalRStickP4");
+            firebuttonDown = Input.GetButtonDown("Fire1P4");
+            firebuttonUp = Input.GetButtonUp("Fire1P4");
+        }
 
         var aimAngle = Mathf.Atan2(playerVer, playerHor);
         if (aimAngle < 0f)
@@ -72,7 +93,7 @@ public class RopeSystem : MonoBehaviour
         var aimDirection = Quaternion.Euler(0, 0, aimAngle * Mathf.Rad2Deg) * Vector2.right;
         // 5
         playerPosition = transform.position;
-        startPos = transform.localPosition;
+        startPos = transform.localPosition + new Vector3(0.1f, 0.1f, 0.1f);
         endPos = ropeHingeAnchor.transform.localPosition;
         Vector2[] points = new Vector2[2]
         {
@@ -108,7 +129,7 @@ public class RopeSystem : MonoBehaviour
     // 1
     private void HandleInput(Vector2 aimDirection)
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (firebuttonDown)
         {
             // 2
             if (ropeAttached) return;
@@ -141,7 +162,7 @@ public class RopeSystem : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonUp("Fire1")) 
+        if (firebuttonUp) 
         {
             ResetRope();
             edgeCollider.enabled = false;

@@ -22,7 +22,21 @@ public class Shield : MonoBehaviour
             fireButtonDown = Input.GetButton("Fire1");
             fireButtonUp = Input.GetButtonUp("Fire1");
         }
-
+        if (player.name == "Player 2")
+        {
+            fireButtonDown = Input.GetButton("Fire1P2");
+            fireButtonUp = Input.GetButtonUp("Fire1P2");
+        }
+        if (player.name == "Player 3")
+        {
+            fireButtonDown = Input.GetButton("Fire1P3");
+            fireButtonUp = Input.GetButtonUp("Fire1P3");
+        }
+        if (player.name == "Player 4")
+        {
+            fireButtonDown = Input.GetButton("Fire1P4");
+            fireButtonUp = Input.GetButtonUp("Fire1P4");
+        }
         if (fireButtonDown)
         {
             GetComponent<BoxCollider2D>().isTrigger = false;
