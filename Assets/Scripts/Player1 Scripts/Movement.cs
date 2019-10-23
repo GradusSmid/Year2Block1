@@ -30,6 +30,11 @@ public class Movement : MonoBehaviour
     private bool usingShield;
 
     private float startTime;
+    //audio
+    public AudioSource[] sounds;
+    public AudioSource weaponPickup;
+    public AudioSource jump1;
+    public AudioSource shieldActivate;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +42,10 @@ public class Movement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         startTime = Time.time;
+        sounds = GetComponents<AudioSource>();
+        weaponPickup = sounds[0];
+        jump1 = sounds[1];
+        shieldActivate = sounds[2];
     }
 
     // Update is called once per frame
@@ -73,6 +82,7 @@ public class Movement : MonoBehaviour
         //Jump
         if ((isGrounded == true) && (Input.GetButtonDown("Jump") == true))
         {
+            jump1.Play();
             Vector3 jump = new Vector3(0, jumpspeed, 0);
             rb.AddForce(jump, ForceMode2D.Impulse);
         }
@@ -105,6 +115,7 @@ public class Movement : MonoBehaviour
         //fading in or out the Aiming circle
         if ((Input.GetAxis("HorizontalRStick") != 0) || (Input.GetAxis("VerticalRStick") != 0))
         {
+            
             //fade in the aiming circle
             circle.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, Mathf.SmoothStep(0, 1, t));
         }
@@ -125,6 +136,7 @@ public class Movement : MonoBehaviour
     { 
         if (col.gameObject.tag == "Jetpack" && usingJetpack == false && handIsEmpty == true)
         {
+            weaponPickup.Play();
             Debug.Log("Time to fly");
             GameObject ChildJetpack = Instantiate(Jetpack, arm.transform.position, Quaternion.identity);
             ChildJetpack.transform.parent = arm.transform;
@@ -134,6 +146,7 @@ public class Movement : MonoBehaviour
 
         if(col.gameObject.tag == ("Hammer") && usingHammer == false && handIsEmpty == true)
         {
+            weaponPickup.Play();
             Debug.Log("hULK SMASH");
             GameObject ChildHammer = Instantiate(hammer, arm.transform.position, Quaternion.identity);
             ChildHammer.transform.parent = arm.transform;
@@ -143,6 +156,7 @@ public class Movement : MonoBehaviour
 
         if(col.gameObject.tag == ("Hook") && usingHook == false && handIsEmpty == true)
         {
+            weaponPickup.Play();
             Debug.Log("Swinging");
             GameObject childHook = Instantiate(Grapplinghook, arm.transform.position, Quaternion.identity);
             childHook.transform.parent = arm.transform;
@@ -153,6 +167,7 @@ public class Movement : MonoBehaviour
 
         if (col.gameObject.tag == ("Shield") && usingShield == false && handIsEmpty == true)
         {
+            weaponPickup.Play();
             Debug.Log("Captain America my dudes");
             GameObject ChildShield = Instantiate(shield, arm.transform.position, Quaternion.identity);
             ChildShield.transform.parent = arm.transform;
