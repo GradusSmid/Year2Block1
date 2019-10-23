@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AnchorMovement : MonoBehaviour
 {
@@ -29,6 +30,10 @@ public class AnchorMovement : MonoBehaviour
     {
         CalculateCameraLocations();
         MoveCamera();
+        if(Players.Count == 0)
+        {
+            SceneManager.LoadScene(1);
+        }
     }
 
     private void MoveCamera()
