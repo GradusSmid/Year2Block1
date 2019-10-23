@@ -26689,7 +26689,7 @@ Transform:
   m_Children:
   - {fileID: 269485628}
   m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1626210653
 GameObject:
@@ -30297,22 +30297,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2822290575742418588, guid: 2b31f0c7f640cca4a8c27a7c62792a24,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 5610271362c08b240b4e1abf9a5b612b,
-        type: 3}
-    - target: {fileID: 2822290575742418590, guid: 2b31f0c7f640cca4a8c27a7c62792a24,
-        type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2822290575742418590, guid: 2b31f0c7f640cca4a8c27a7c62792a24,
-        type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 2822290575742418585, guid: 2b31f0c7f640cca4a8c27a7c62792a24,
         type: 3}
       propertyPath: jumpspeed
@@ -30362,6 +30346,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_FlipX
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2822290575742418588, guid: 2b31f0c7f640cca4a8c27a7c62792a24,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5610271362c08b240b4e1abf9a5b612b,
+        type: 3}
+    - target: {fileID: 2822290575742418590, guid: 2b31f0c7f640cca4a8c27a7c62792a24,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2822290575742418590, guid: 2b31f0c7f640cca4a8c27a7c62792a24,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b31f0c7f640cca4a8c27a7c62792a24, type: 3}
