@@ -21,7 +21,6 @@ public class WaterJetpack : MonoBehaviour
         rb = GetComponentInParent<Rigidbody2D>();
         arm = transform.parent.gameObject;
         player = transform.parent.gameObject.transform.parent.gameObject;
-        
     }
 
     // Update is called once per frame
