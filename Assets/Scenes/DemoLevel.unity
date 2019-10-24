@@ -29071,9 +29071,9 @@ Transform:
   m_Father: {fileID: 222886251}
   m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1874180151 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5251445381350339615, guid: 2b31f0c7f640cca4a8c27a7c62792a24,
+--- !u!212 &1874180152 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5451191014373175423, guid: 2b31f0c7f640cca4a8c27a7c62792a24,
     type: 3}
   m_PrefabInstance: {fileID: 2079850633}
   m_PrefabAsset: {fileID: 0}
@@ -30311,7 +30311,7 @@ PrefabInstance:
         type: 3}
       propertyPath: circle
       value: 
-      objectReference: {fileID: 1874180151}
+      objectReference: {fileID: 1874180152}
     - target: {fileID: 2822290575742418591, guid: 2b31f0c7f640cca4a8c27a7c62792a24,
         type: 3}
       propertyPath: m_GravityScale

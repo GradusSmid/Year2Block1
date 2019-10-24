@@ -11,7 +11,7 @@ public class Movement : MonoBehaviour
     public bool isGrounded;
     private Rigidbody2D rb;
     public GameObject arm;
-    public GameObject circle;
+    public SpriteRenderer circle;
     private bool handIsEmpty = true;
     private float horizontalInput;
     private SpriteRenderer sprite;
@@ -28,6 +28,7 @@ public class Movement : MonoBehaviour
     //Shield values
     public GameObject shield;
     private bool usingShield;
+    private bool isFaded;
 
     private float startTime;
     //audio
@@ -111,22 +112,18 @@ public class Movement : MonoBehaviour
 //__________________________________________________________________________________________________________________________________________
         //Rotation of PlayerCircle
         circle.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        float t = (Time.time - startTime) / 2f;
         //fading in or out the Aiming circle
-        if ((Input.GetAxis("HorizontalRStick") != 0) || (Input.GetAxis("VerticalRStick") != 0))
+        if ((Input.GetAxis("HorizontalRStick") != 0)  && isFaded == true|| (Input.GetAxis("VerticalRStick") != 0) && isFaded == true)
         {
-            
             //fade in the aiming circle
-            circle.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, Mathf.SmoothStep(0, 1, t));
+            StartCoroutine("fadeIn");
+            isFaded = false;
         }
-        else
+        if ((Input.GetAxis("HorizontalRStick") == 0) && (Input.GetAxis("VerticalRStick") == 0) && isFaded == false)
         {
             //fade out the aiming circle
-            circle.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, Mathf.SmoothStep(1, 0, t));
-        }
-        if(t >= 2f)
-        {
-            t = 0;
+            StartCoroutine("fadeOut");
+            isFaded = true;
         }
 //      ___________________________________________________________________________________________________________________________
 
@@ -173,6 +170,28 @@ public class Movement : MonoBehaviour
             ChildShield.transform.parent = arm.transform;
             usingShield = true;
             handIsEmpty = false; 
+        }
+    }
+
+    
+    IEnumerator fadeOut()
+    {
+        for(float f = 1f; f >= -0.05f; f -= 0.05f)
+        {
+            Color c = circle.material.color;
+            c.a = f;
+            circle.material.color = c;
+            yield return new WaitForSeconds(0.05f);
+        }
+    }
+    IEnumerator fadeIn()
+    {
+        for (float f = 0.05f; f <= 1; f += 0.05f)
+        {
+            Color c = circle.material.color;
+            c.a = f;
+            circle.material.color = c;
+            yield return new WaitForSeconds(0.05f);
         }
     }
 }
