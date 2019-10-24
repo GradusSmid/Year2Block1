@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2822290574863347542}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.12, z: 0}
+  m_LocalPosition: {x: -0.09, y: 1.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2822290575742418589}
@@ -530,6 +530,10 @@ MonoBehaviour:
   Grapplinghook: {fileID: 443434278867409064, guid: 4c3cc5ecc895a8d46ae372dd3c7bb6c4,
     type: 3}
   shield: {fileID: 7233751492412296138, guid: a1d1344ccd3203a4c961556ce2118caf, type: 3}
+  sounds: []
+  weaponPickup: {fileID: 0}
+  jump1: {fileID: 0}
+  shieldActivate: {fileID: 0}
 --- !u!50 &2822290575742418591
 Rigidbody2D:
   serializedVersion: 4
