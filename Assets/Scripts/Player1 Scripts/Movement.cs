@@ -12,9 +12,11 @@ public class Movement : MonoBehaviour
     private Rigidbody2D rb;
     public GameObject arm;
     public SpriteRenderer circle;
+    private bool isFaded;
     private bool handIsEmpty = true;
     private float horizontalInput;
     private SpriteRenderer sprite;
+
     //Jetpack values
     public GameObject Jetpack;
     private bool usingJetpack;
@@ -28,9 +30,6 @@ public class Movement : MonoBehaviour
     //Shield values
     public GameObject shield;
     private bool usingShield;
-    private bool isFaded;
-
-    private float startTime;
     //audio
     public AudioSource[] sounds;
     public AudioSource weaponPickup;
@@ -42,7 +41,6 @@ public class Movement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
-        startTime = Time.time;
         sounds = GetComponents<AudioSource>();
         weaponPickup = sounds[0];
         jump1 = sounds[1];

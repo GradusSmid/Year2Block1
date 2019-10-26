@@ -14,6 +14,8 @@ public class MovementP4 : MonoBehaviour
     public GameObject arm;
     private bool handIsEmpty = true;
     private float horizontalInput;
+    public SpriteRenderer circle;
+    private bool isFaded;
     //Jetpack values
     public GameObject Jetpack;
     private bool usingJetpack;
@@ -98,6 +100,23 @@ public class MovementP4 : MonoBehaviour
         // Rotation of arm
         float angle = Mathf.Atan2(Input.GetAxis("HorizontalRStickP4"), -Input.GetAxis("VerticalRStickP4")) * Mathf.Rad2Deg;
         arm.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+
+        //Rotation of PlayerCircle
+        circle.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        //fading in or out the Aiming circle
+        if ((Input.GetAxis("HorizontalRStickP4") != 0) && isFaded == true || (Input.GetAxis("VerticalRStickP4") != 0) && isFaded == true)
+        {
+            //fade in the aiming circle
+            StartCoroutine("fadeIn");
+            isFaded = false;
+        }
+        if ((Input.GetAxis("HorizontalRStick") == 0) && (Input.GetAxis("VerticalRStick") == 0) && isFaded == false)
+        {
+            //fade out the aiming circle
+            StartCoroutine("fadeOut");
+            isFaded = true;
+        }
     }
     //Getting the Jetpack
     void OnTriggerEnter2D(Collider2D col)
@@ -154,4 +173,24 @@ public class MovementP4 : MonoBehaviour
         StopCoroutine("Die");
     }
 
+    IEnumerator fadeOut()
+    {
+        for (float f = 1f; f >= -0.05f; f -= 0.05f)
+        {
+            Color c = circle.material.color;
+            c.a = f;
+            circle.material.color = c;
+            yield return new WaitForSeconds(0.05f);
+        }
+    }
+    IEnumerator fadeIn()
+    {
+        for (float f = 0.05f; f <= 1; f += 0.05f)
+        {
+            Color c = circle.material.color;
+            c.a = f;
+            circle.material.color = c;
+            yield return new WaitForSeconds(0.05f);
+        }
+    }
 }
