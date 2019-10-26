@@ -8,10 +8,15 @@ public class Shield : MonoBehaviour
     private bool fireButtonDown;
     private bool fireButtonUp;
     public bool allowedToMove;
+
+    public AudioSource shieldActivate;
     // Start is called before the first frame update
+
+
     void Start()
     {
         player = transform.parent.gameObject.transform.parent.gameObject;
+        shieldActivate = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -19,22 +24,22 @@ public class Shield : MonoBehaviour
     {
         if (player.name == "Player 1")
         {
-            fireButtonDown = Input.GetButton("Fire1");
+            fireButtonDown = Input.GetButtonDown("Fire1");
             fireButtonUp = Input.GetButtonUp("Fire1");
         }
         if (player.name == "Player 2")
         {
-            fireButtonDown = Input.GetButton("Fire1P2");
+            fireButtonDown = Input.GetButtonDown("Fire1P2");
             fireButtonUp = Input.GetButtonUp("Fire1P2");
         }
         if (player.name == "Player 3")
         {
-            fireButtonDown = Input.GetButton("Fire1P3");
+            fireButtonDown = Input.GetButtonDown("Fire1P3");
             fireButtonUp = Input.GetButtonUp("Fire1P3");
         }
         if (player.name == "Player 4")
         {
-            fireButtonDown = Input.GetButton("Fire1P4");
+            fireButtonDown = Input.GetButtonDown("Fire1P4");
             fireButtonUp = Input.GetButtonUp("Fire1P4");
         }
         if (fireButtonDown)
@@ -43,7 +48,7 @@ public class Shield : MonoBehaviour
             player.GetComponent<Movement>().enabled = false;
             player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
             player.GetComponent<Rigidbody2D>().gravityScale = 0;
-
+            shieldActivate.Play();
         }
         else if (fireButtonUp)
         {

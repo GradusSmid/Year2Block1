@@ -11,9 +11,11 @@ public class WaterJetpack : MonoBehaviour
     public float JetpackFuel = 500;
     private Rigidbody2D rb;
     public GameObject player;
-
+    public AudioSource watershoot;
     private float playerHor;
     private float playerVer;
+    private bool buttonDown;
+    private bool buttonUp;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +23,7 @@ public class WaterJetpack : MonoBehaviour
         rb = GetComponentInParent<Rigidbody2D>();
         arm = transform.parent.gameObject;
         player = transform.parent.gameObject.transform.parent.gameObject;
+        watershoot = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -35,23 +38,31 @@ public class WaterJetpack : MonoBehaviour
 
         if(player.name == "Player 1")
         {
-             playerHor = Input.GetAxis("HorizontalRStick");
-             playerVer = Input.GetAxis("VerticalRStick");
+            playerHor = Input.GetAxis("HorizontalRStick");
+            playerVer = Input.GetAxis("VerticalRStick");
+            buttonDown = Input.GetButtonDown("Fire1");
+            buttonUp = Input.GetButtonUp("Fire1");
         }
         if(player.name == "Player 2")
         {
             playerHor = Input.GetAxis("HorizontalRStickP2");
             playerVer = Input.GetAxis("VerticalRStickP2");
+            buttonDown = Input.GetButtonDown("Fire1P2");
+            buttonUp = Input.GetButtonUp("Fire1P2");
         }
         if (player.name == "Player 3")
         {
             playerHor = Input.GetAxis("HorizontalRStickP3");
             playerVer = Input.GetAxis("VerticalRStickP3");
+            buttonDown = Input.GetButtonDown("Fire1P3");
+            buttonUp = Input.GetButtonUp("Fire1P3");
         }
         if (player.name == "Player 4")
         {
             playerHor = Input.GetAxis("HorizontalRStickP4");
             playerVer = Input.GetAxis("VerticalRStickP4");
+            buttonDown = Input.GetButtonDown("Fire1P4");
+            buttonUp = Input.GetButtonUp("Fire1P4");
         }
         Debug.DrawRay(arm.transform.position,arm.transform.localPosition , Color.blue);
         //Using Jetpack
@@ -77,6 +88,20 @@ public class WaterJetpack : MonoBehaviour
             }
                 else
                     lr.SetPosition(1, arm.transform.localPosition * 5000);
+        }
+
+            //playing audio (im proud of this one)
+         if (playerHor >= 0.01 && JetpackFuel >= 0 && buttonDown == true|| playerVer >= 0.01 && JetpackFuel >= 0 && buttonDown == true || playerHor <= -0.01 && JetpackFuel >= 0 && buttonDown == true || playerVer <= -0.01 && JetpackFuel >= 0 && buttonDown == true)
+        {
+            watershoot.Play();
+            watershoot.loop = true;
+        }
+        if (playerHor >= 0.01 && JetpackFuel >= 0 && buttonUp == true|| playerVer >= 0.01 && JetpackFuel >= 0 && buttonUp == true || playerHor <= -0.01 && JetpackFuel >= 0 && buttonUp == true || playerVer <= -0.01 && JetpackFuel >= 0 && buttonUp == true)
+        {
+            watershoot.Stop();
+        }
+        if (JetpackFuel == 0){
+            watershoot.Stop();
         }
 
 

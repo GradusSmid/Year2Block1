@@ -6,10 +6,13 @@ public class Hammer : MonoBehaviour
 {
     private bool fireButtonDown;
     public GameObject player;
+
+    public AudioSource hammer;
     // Update is called once per frame
     private void Start()
     {
         player = transform.parent.gameObject.transform.parent.gameObject;
+        hammer = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -37,6 +40,7 @@ public class Hammer : MonoBehaviour
         
         if (col.gameObject.tag == "Player" && fireButtonDown)
         {
+            hammer.Play();
             Debug.Log("Smashh");
             forceDirection = col.transform.position - transform.position;
             col.gameObject.GetComponentInParent<Rigidbody2D>().AddForceAtPosition(forceDirection.normalized * 500, transform.position);
