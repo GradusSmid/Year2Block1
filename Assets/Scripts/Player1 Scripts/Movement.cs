@@ -174,7 +174,7 @@ public class Movement : MonoBehaviour
     
     IEnumerator fadeOut()
     {
-        for(float f = 1f; f >= -0.05f; f -= 0.30f)
+        for(float f = 1f; f >= -0.05f; f -= 0.05f)
         {
             Color c = circle.material.color;
             c.a = f;
