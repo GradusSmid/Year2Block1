@@ -80,14 +80,6 @@ public class WaterJetpack : MonoBehaviour
         }
 
 
-        //This is double.
-        RaycastHit2D col = Physics2D.Raycast(player.transform.position, Vector2.down, 1.2f);
-        if (col.collider.tag == "Waterfuel")
-        {
-            if (JetpackFuel <= 500)
-            {
-                JetpackFuel=500;
-            }
-        } 
+
     }
 }

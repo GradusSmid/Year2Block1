@@ -9,7 +9,16 @@ public class Finish : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            SceneManager.LoadScene(0);
+            //audio.play;
+           StartCoroutine("FinishLine");
+
         }
+    }
+
+    IEnumerator FinishLine()
+    {
+        yield return new WaitForSeconds(1.6f);
+        SceneManager.LoadScene(0);
+        yield return null;
     }
 }

@@ -14,8 +14,7 @@ public class RefillWaterTank : MonoBehaviour
     {
         if(col.gameObject.tag == "Player")
         {
-            GetComponentInChildren<WaterJetpack>().JetpackFuel=500;
-            Debug.Log(GetComponentInChildren<WaterJetpack>().JetpackFuel);
+            col.GetComponentInChildren<WaterJetpack>().JetpackFuel =500;
         }
         
     }
