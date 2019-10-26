@@ -158,22 +158,22 @@ public class MovementP2 : MonoBehaviour
     }
     IEnumerator fadeOut()
     {
-        for (float f = 1f; f >= -0.05f; f -= 0.10f)
+        for (float f = 1f; f >= -0.05f; f -= 0.05f)
         {
             Color c = circle.material.color;
             c.a = f;
             circle.material.color = c;
-            yield return null;
+            yield return new WaitForSeconds(0.05f);
         }
     }
     IEnumerator fadeIn()
     {
-        for (float f = 0.05f; f <= 1; f += 0.10f)
+        for (float f = 0.05f; f <= 1; f += 0.05f)
         {
             Color c = circle.material.color;
             c.a = f;
             circle.material.color = c;
-            yield return null;
+            yield return new WaitForSeconds(0.05f);
         }
     }
 }
