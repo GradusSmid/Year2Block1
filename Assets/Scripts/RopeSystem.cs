@@ -27,6 +27,8 @@ public class RopeSystem : MonoBehaviour
     private float playerHor;
     private float playerVer;
 
+    public AudioSource hook;
+
     //add collision to line
     private Vector3 startPos;
     private Vector3 endPos;
@@ -41,7 +43,7 @@ public class RopeSystem : MonoBehaviour
         ropeHingeAnchorSprite = ropeHingeAnchor.GetComponent<SpriteRenderer>();
         ropeJoint.connectedBody = ropeHingeAnchorRb;
         player = transform.parent.gameObject.transform.parent.gameObject;
-
+        hook = GetComponent<AudioSource>();
 
     }
 
@@ -150,6 +152,7 @@ public class RopeSystem : MonoBehaviour
                     ropeJoint.distance = Vector2.Distance(playerPosition, hit.point);
                     ropeJoint.enabled = true;
                     ropeHingeAnchorSprite.enabled = true;
+                    hook.Play();
 
                 }
             }

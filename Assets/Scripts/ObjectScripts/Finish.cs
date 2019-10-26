@@ -5,11 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class Finish : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    public AudioSource victory;
+
+    void Start(){
+        victory = GetComponent<AudioSource>();
+    }
+
+private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            SceneManager.LoadScene(0);
+            victory.Play();
+           StartCoroutine("FinishLine");
         }
+    }
+
+    IEnumerator FinishLine()
+    {
+        yield return new WaitForSeconds(1.6f);
+        SceneManager.LoadScene(0);
+        yield return null;
     }
 }

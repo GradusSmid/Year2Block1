@@ -11,7 +11,7 @@ public class WaterJetpack : MonoBehaviour
     public float JetpackFuel = 500;
     private Rigidbody2D rb;
     public GameObject player;
-
+    public AudioSource watershoot;
     private float playerHor;
     private float playerVer;
     // Start is called before the first frame update
@@ -21,6 +21,7 @@ public class WaterJetpack : MonoBehaviour
         rb = GetComponentInParent<Rigidbody2D>();
         arm = transform.parent.gameObject;
         player = transform.parent.gameObject.transform.parent.gameObject;
+        watershoot = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -77,6 +78,20 @@ public class WaterJetpack : MonoBehaviour
             }
                 else
                     lr.SetPosition(1, arm.transform.localPosition * 5000);
+        }
+
+            //playing audio (im proud of this one)
+         if (playerHor >= 0.01 && JetpackFuel >= 0 && Input.GetButtonDown("Fire1") || playerVer >= 0.01 && JetpackFuel >= 0 && Input.GetButtonDown("Fire1") || playerHor <= -0.01 && JetpackFuel >= 0 && Input.GetButtonDown("Fire1") || playerVer <= -0.01 && JetpackFuel >= 0 && Input.GetButtonDown("Fire1"))
+        {
+            watershoot.Play();
+            watershoot.loop = true;
+        }
+        if (playerHor >= 0.01 && JetpackFuel >= 0 && Input.GetButtonUp("Fire1") || playerVer >= 0.01 && JetpackFuel >= 0 && Input.GetButtonUp("Fire1") || playerHor <= -0.01 && JetpackFuel >= 0 && Input.GetButtonUp("Fire1") || playerVer <= -0.01 && JetpackFuel >= 0 && Input.GetButtonUp("Fire1"))
+        {
+            watershoot.Stop();
+        }
+        if (JetpackFuel == 0){
+            watershoot.Stop();
         }
 
 
