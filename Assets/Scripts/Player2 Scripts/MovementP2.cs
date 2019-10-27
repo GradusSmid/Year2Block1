@@ -96,9 +96,12 @@ public class MovementP2 : MonoBehaviour
         // Rotation of arm
         float angle = Mathf.Atan2(Input.GetAxis("HorizontalRStickP2"), -Input.GetAxis("VerticalRStickP2")) * Mathf.Rad2Deg;
         arm.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        
+
         //Rotation of PlayerCircle
-        circle.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        if ((Input.GetAxis("HorizontalRStickP2") != 0) && isFaded == true || (Input.GetAxis("VerticalRStickP2") != 0))
+        {
+            circle.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
         //fading in or out the Aiming circle
         if ((Input.GetAxis("HorizontalRStickP2") != 0) && isFaded == true || (Input.GetAxis("VerticalRStickP2") != 0) && isFaded == true)
         {

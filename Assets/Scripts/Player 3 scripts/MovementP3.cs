@@ -103,7 +103,10 @@ public class MovementP3 : MonoBehaviour
         arm.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         //Rotation of PlayerCircle
-        circle.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        if ((Input.GetAxis("HorizontalRStickP3") != 0) && isFaded == true || (Input.GetAxis("VerticalRStickP3") != 0))
+        {
+            circle.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
         //fading in or out the Aiming circle
         if ((Input.GetAxis("HorizontalRStickP3") != 0) && isFaded == true || (Input.GetAxis("VerticalRStickP3") != 0) && isFaded == true)
         {
