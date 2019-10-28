@@ -66,7 +66,7 @@ public class WaterJetpack : MonoBehaviour
         }
         Debug.DrawRay(arm.transform.position,arm.transform.localPosition , Color.blue);
         //Using Jetpack
-        if (playerHor >= 0.01 && JetpackFuel >= 0 && Input.GetButton("Fire1") || playerVer >= 0.01 && JetpackFuel >= 0 && Input.GetButton("Fire1") || playerHor <= -0.01 && JetpackFuel >= 0 && Input.GetButton("Fire1") || playerVer <= -0.01 && JetpackFuel >= 0 && Input.GetButton("Fire1"))
+        if (playerHor != 0 && JetpackFuel >= 0 && Input.GetButton("Fire1") || playerVer != 0 && JetpackFuel >= 0 && Input.GetButton("Fire1"))
         {
             rb.AddForce(-arm.transform.localPosition * 28);
             lr.enabled = true;
@@ -91,12 +91,12 @@ public class WaterJetpack : MonoBehaviour
         }
 
             //playing audio (im proud of this one)
-         if (playerHor >= 0.01 && JetpackFuel >= 0 && buttonDown == true|| playerVer >= 0.01 && JetpackFuel >= 0 && buttonDown == true || playerHor <= -0.01 && JetpackFuel >= 0 && buttonDown == true || playerVer <= -0.01 && JetpackFuel >= 0 && buttonDown == true)
+         if (playerHor != 0 && JetpackFuel >= 0 && buttonDown == true|| playerVer != 0 && JetpackFuel >= 0 && buttonDown == true)
         {
             watershoot.Play();
             watershoot.loop = true;
         }
-        if (playerHor >= 0.01 && JetpackFuel >= 0 && buttonUp == true|| playerVer >= 0.01 && JetpackFuel >= 0 && buttonUp == true || playerHor <= -0.01 && JetpackFuel >= 0 && buttonUp == true || playerVer <= -0.01 && JetpackFuel >= 0 && buttonUp == true)
+        if (playerHor !=0 && JetpackFuel >= 0 && buttonUp == true|| playerVer !=0 && JetpackFuel >= 0 && buttonUp == true)
         {
             watershoot.Stop();
         }
