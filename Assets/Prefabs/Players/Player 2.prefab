@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4695648728935305842}
   - component: {fileID: 826792579785456515}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PlayerCircle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,8 +25,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 778556146974428376}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.03, y: -3.9, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_Children: []
   m_Father: {fileID: 4636042754212328582}
   m_RootOrder: 4
@@ -667,7 +667,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8ccdc6bbe1dfdba4aab52e431695ac6b, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.015
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -763,7 +763,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 141ac68903d91e1498c6e599c88acc67, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.015
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
