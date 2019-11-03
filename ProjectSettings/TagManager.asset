@@ -10,6 +10,7 @@ TagManager:
   - Shield
   - Waterfuel
   - Item
+  - InterObject
   layers:
   - Default
   - TransparentFX
