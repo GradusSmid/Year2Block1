@@ -5,11 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class ChangeToPlay : MonoBehaviour
 {
-  private void OnTriggerEnter2D(Collider2D collision)
+    public AudioSource victory;
+
+    void Start(){
+        victory = GetComponent<AudioSource>();
+    }
+
+private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-          
+            victory.Play();
            StartCoroutine("FinishLine");
         }
     }
@@ -20,4 +26,4 @@ public class ChangeToPlay : MonoBehaviour
         SceneManager.LoadScene(1);
         yield return null;
     }
-    }
+}
