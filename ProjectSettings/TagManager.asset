@@ -10,6 +10,7 @@ TagManager:
   - Shield
   - Waterfuel
   - Item
+  - InterObject
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - Rope
   - Player
   - PlayerAimCircle
-  - 
+  - Ungrabable
   - 
   - 
   - 
