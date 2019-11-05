@@ -34,12 +34,11 @@ public class Movement : MonoBehaviour
     public AudioSource[] sounds;
     public AudioSource weaponPickup;
     public AudioSource jump1;
-<<<<<<< HEAD
+    //<<<<<<<<<< HEAD
     public AudioSource shieldActivate;
     public Animator anim;
-=======
 
->>>>>>> bdb8aa07d196fbb4d4429df6091e12b523232aa2
+    // bdb8aa07d196fbb4d4429df6091e12b523232aa2
 
     // Start is called before the first frame update
     void Start()
