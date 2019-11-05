@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 2822290574863347543}
   - component: {fileID: 2822290574863347540}
   - component: {fileID: 2822290574863347541}
+  - component: {fileID: 845477514}
   m_Layer: 10
   m_Name: Head 2D
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,6 +98,25 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.755
+--- !u!95 &845477514
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2822290574863347542}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c3974d4d7953dc243bc9b4f78167a5cc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2822290575258727849
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,7 +129,7 @@ GameObject:
   - component: {fileID: 2822290575258727854}
   m_Layer: 0
   m_Name: Arm 2D
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -194,6 +214,7 @@ GameObject:
   - component: {fileID: 2079850641}
   - component: {fileID: 2079850635}
   - component: {fileID: 2079850636}
+  - component: {fileID: 4083020196193435404}
   m_Layer: 10
   m_Name: Player 1
   m_TagString: Player
@@ -648,6 +669,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &4083020196193435404
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2822290575742418584}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7b251aecd1d5b8140b2366f84f0d21ea, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5251445381350339615
 GameObject:
   m_ObjectHideFlags: 0
