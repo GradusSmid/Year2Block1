@@ -6,7 +6,7 @@ public class MovementP2 : MonoBehaviour
 {
     //Player stats
     public float speed;
-    public float jumpspeed = 30;
+    public float jumpspeed = 35;
     public bool isGrounded;
     private SpriteRenderer sprite;
     private Rigidbody2D rb;
@@ -51,8 +51,6 @@ public class MovementP2 : MonoBehaviour
             GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
             arm.GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
             transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
-            transform.GetChild(2).gameObject.GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
-            transform.GetChild(3).gameObject.GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
         }
         //Move Left and Right
         if (Input.GetAxis("HorizontalP2") >= 0.90f || Input.GetAxis("HorizontalP2") <= -0.90f)
@@ -78,9 +76,8 @@ public class MovementP2 : MonoBehaviour
             Vector3 jump = new Vector3(0, jumpspeed, 0);
             rb.AddForce(jump, ForceMode2D.Impulse);
         }
-
         RaycastHit2D hit;
-        hit = Physics2D.Raycast(transform.position - new Vector3(0, sprite.bounds.extents.y + 0.5f, 0), Vector2.down, 0.1f);
+        hit = Physics2D.Raycast(transform.position - new Vector3(0, sprite.bounds.extents.y - 0.5f, 0), Vector2.down, 0.5f);
         if (hit)
         {
             isGrounded = true;
@@ -104,10 +101,11 @@ public class MovementP2 : MonoBehaviour
         arm.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         //Rotation of PlayerCircle
-        if ((Input.GetAxis("HorizontalRStickP2") != 0) && isFaded == true || (Input.GetAxis("VerticalRStickP2") != 0))
+        if ((Input.GetAxis("HorizontalRStickP2") != 0) || (Input.GetAxis("VerticalRStickP2") != 0))
         {
             circle.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
+
         //fading in or out the Aiming circle
         if ((Input.GetAxis("HorizontalRStickP2") != 0) && isFaded == true || (Input.GetAxis("VerticalRStickP2") != 0) && isFaded == true)
         {
@@ -115,7 +113,7 @@ public class MovementP2 : MonoBehaviour
             StartCoroutine("fadeIn");
             isFaded = false;
         }
-        if ((Input.GetAxis("HorizontalRStick") == 0) && (Input.GetAxis("VerticalRStick") == 0) && isFaded == false)
+        if ((Input.GetAxis("HorizontalRStickP2") == 0) && (Input.GetAxis("VerticalRStickP2") == 0) && isFaded == false)
         {
             //fade out the aiming circle
             StartCoroutine("fadeOut");

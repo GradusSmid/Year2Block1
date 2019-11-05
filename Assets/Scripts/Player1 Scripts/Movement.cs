@@ -110,7 +110,7 @@ public class Movement : MonoBehaviour
 
         //__________________________________________________________________________________________________________________________________________
         //Rotation of PlayerCircle
-        if ((Input.GetAxis("HorizontalRStick") != 0) && isFaded == true || (Input.GetAxis("VerticalRStick") != 0))
+        if ((Input.GetAxis("HorizontalRStick") != 0) || (Input.GetAxis("VerticalRStick") != 0))
         {
             circle.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
