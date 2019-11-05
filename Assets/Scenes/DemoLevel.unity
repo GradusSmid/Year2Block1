@@ -27847,6 +27847,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8036590999721615349, guid: 7563948048ff7d0488bdd5c4e975effc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8900570748109138716, guid: 7563948048ff7d0488bdd5c4e975effc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 8162159260118614631, guid: 7563948048ff7d0488bdd5c4e975effc,
         type: 3}
       propertyPath: m_LocalScale.y
@@ -27861,16 +27871,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.x
       value: -20.76
-      objectReference: {fileID: 0}
-    - target: {fileID: 8036590999721615349, guid: 7563948048ff7d0488bdd5c4e975effc,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 8900570748109138716, guid: 7563948048ff7d0488bdd5c4e975effc,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4954699921456237805, guid: 7563948048ff7d0488bdd5c4e975effc, type: 3}
@@ -32791,7 +32791,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 996239510}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 63.5, y: 5.5, z: 0}
+  m_LocalPosition: {x: 63.5, y: 5.56, z: 0}
   m_LocalScale: {x: 5, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 331845493}
@@ -36919,6 +36919,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6787980171476749927, guid: 1f494e24cd796b34b8a55e37605cba2c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6787980171476749922, guid: 1f494e24cd796b34b8a55e37605cba2c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -36928,11 +36933,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 2.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6787980171476749927, guid: 1f494e24cd796b34b8a55e37605cba2c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6787980171476749922, guid: 1f494e24cd796b34b8a55e37605cba2c,
         type: 3}
