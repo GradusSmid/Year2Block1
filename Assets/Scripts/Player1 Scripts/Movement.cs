@@ -34,12 +34,9 @@ public class Movement : MonoBehaviour
     public AudioSource[] sounds;
     public AudioSource weaponPickup;
     public AudioSource jump1;
-<<<<<<< HEAD
     public AudioSource shieldActivate;
     public Animator anim;
-=======
 
->>>>>>> bdb8aa07d196fbb4d4429df6091e12b523232aa2
 
     // Start is called before the first frame update
     void Start()
@@ -56,16 +53,23 @@ public class Movement : MonoBehaviour
     {
         //Move Left and Right
         horizontalInput = Input.GetAxis("Horizontal");
-        if (horizontalInput < 0f || horizontalInput > 0f)
+        if (horizontalInput != 0)
         {
-            GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
-            arm.GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
-            transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
+            GetComponent<SpriteRenderer>().flipX = horizontalInput < 0f;
+            arm.GetComponent<SpriteRenderer>().flipX = horizontalInput < 0f;
+            transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().flipX = horizontalInput < 0f;
+            anim.SetBool("isRunning", true);
         }
+        else if (horizontalInput == 0)
+        {
+            anim.SetBool("isRunning", false);
+        }
+
         if (Input.GetAxis("Horizontal") >= 0.90f || Input.GetAxis("Horizontal") <= -0.90f)
         {
             speed = 15;
         }
+
         else if (Input.GetAxis("Horizontal") >= 0.60f || Input.GetAxis("Horizontal") <= -0.60f)
         {
             speed = 10;
@@ -85,23 +89,21 @@ public class Movement : MonoBehaviour
         {
             jump1.Play();
             Vector3 jump = new Vector3(0, jumpspeed, 0);
-            rb.AddForce(jump, ForceMode2D.Impulse);
-            anim.SetBool("isJumping", true);
-            sprite.flipX = true ;
+            rb.AddForce(jump, ForceMode2D.Impulse);            
         }
-        else
-        {
-            anim.SetBool("isJumping", false);
-        }
+        
         RaycastHit2D hit;
-        hit = Physics2D.Raycast(transform.position - new Vector3(0, sprite.bounds.extents.y - 0.5f, 0), Vector2.down, 1f);
+        hit = Physics2D.Raycast(transform.position - new Vector3(0, sprite.bounds.extents.y - 0.5f, 0), Vector2.down, 0.5f);
         if (hit)
         {
             isGrounded = true;
-
+            anim.SetBool("isFalling", false);
         }
         else
+        {
             isGrounded = false;
+            anim.SetBool("isJumping", true);
+        }
         // Boudning
         Vector3 minScreenBounds = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));
         Vector3 maxScreenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));

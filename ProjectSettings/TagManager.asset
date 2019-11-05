@@ -11,6 +11,7 @@ TagManager:
   - Waterfuel
   - Item
   - InterObject
+  - Ground
   layers:
   - Default
   - TransparentFX

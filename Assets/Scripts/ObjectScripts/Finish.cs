@@ -6,12 +6,21 @@ using UnityEngine.SceneManagement;
 public class Finish : MonoBehaviour
 {
     public AudioSource victory;
+    private int nextLevel;
 
     void Start(){
         victory = GetComponent<AudioSource>();
+        nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
     }
 
-private void OnTriggerEnter2D(Collider2D collision)
+    private void Update()
+    {
+        if(nextLevel == SceneManager.sceneCountInBuildSettings)
+        {
+            nextLevel = SceneManager.GetActiveScene().buildIndex - SceneManager.GetActiveScene().buildIndex;
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
@@ -23,7 +32,7 @@ private void OnTriggerEnter2D(Collider2D collision)
     IEnumerator FinishLine()
     {
         yield return new WaitForSeconds(1.6f);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(nextLevel);
         yield return null;
     }
 }
