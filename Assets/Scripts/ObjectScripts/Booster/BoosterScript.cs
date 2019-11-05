@@ -31,6 +31,7 @@ public class BoosterScript : MonoBehaviour {
 
             //turn off patricles
             BoosterParticles.loop = false;
+
         }
     }
 }
