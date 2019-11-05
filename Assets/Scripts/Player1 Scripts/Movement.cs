@@ -37,7 +37,6 @@ public class Movement : MonoBehaviour
     public AudioSource shieldActivate;
     public Animator anim;
 
-
     // Start is called before the first frame update
     void Start()
     {
