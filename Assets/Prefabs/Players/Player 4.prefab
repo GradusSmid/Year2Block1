@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6787980169818785105}
   m_Layer: 10
   m_Name: Arm 2D
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 6787980170228850602}
   m_Layer: 10
   m_Name: Head 2D
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -279,7 +279,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.1872136}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -290,7 +290,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.05, y: 1.2}
+  m_Size: {x: 1.05, y: 1.5744272}
   m_EdgeRadius: 0
 --- !u!50 &6787980171476749920
 Rigidbody2D:
@@ -307,7 +307,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 3
+  m_GravityScale: 7
   m_Material: {fileID: 6200000, guid: fece25449d2b14a4ca02fca3fd603ea2, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -345,7 +345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  jumpspeed: 50
+  jumpspeed: 28
   isGrounded: 0
   arm: {fileID: 6787980169818785110}
   circle: {fileID: 1329076052582641156}
