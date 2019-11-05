@@ -34,7 +34,7 @@ public class Movement : MonoBehaviour
     public AudioSource[] sounds;
     public AudioSource weaponPickup;
     public AudioSource jump1;
-    public AudioSource shieldActivate;
+
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +44,6 @@ public class Movement : MonoBehaviour
         sounds = GetComponents<AudioSource>();
         weaponPickup = sounds[0];
         jump1 = sounds[1];
-        shieldActivate = sounds[2];
     }
 
     // Update is called once per frame
