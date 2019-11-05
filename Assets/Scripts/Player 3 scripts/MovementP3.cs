@@ -103,8 +103,9 @@ public class MovementP3 : MonoBehaviour
         arm.transform.localPosition = new Vector3(Input.GetAxis("HorizontalRStickP3"), Input.GetAxis("VerticalRStickP3"), 0).normalized;
         arm.transform.rotation = Quaternion.identity;
         // Rotation of arm
-        float angle = Mathf.Atan2(Input.GetAxis("HorizontalRStickP3"), -Input.GetAxis("VerticalRStickP3")) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(-Input.GetAxis("HorizontalRStickP3"), Input.GetAxis("VerticalRStickP3")) * Mathf.Rad2Deg;
         arm.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
 
         //Rotation of PlayerCircle
         if ((Input.GetAxis("HorizontalRStickP3") != 0) || (Input.GetAxis("VerticalRStickP3") != 0))
