@@ -17,20 +17,6 @@ public class BoosterScript : MonoBehaviour {
 
             other.gameObject.GetComponent<Rigidbody2D>().AddRelativeForce(transform.up* 120);
 
-            //play animation/particle effect
-            BoosterParticles.loop = true;
-            BoosterParticles.Play();
-
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-
-            //turn off patricles
-            BoosterParticles.loop = false;
         }
     }
 }

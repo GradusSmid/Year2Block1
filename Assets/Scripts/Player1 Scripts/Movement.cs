@@ -56,8 +56,6 @@ public class Movement : MonoBehaviour
             GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
             arm.GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
             transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
-            transform.GetChild(2).gameObject.GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
-            transform.GetChild(3).gameObject.GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
         }
         if (Input.GetAxis("Horizontal") >= 0.90f || Input.GetAxis("Horizontal") <= -0.90f)
         {
@@ -85,7 +83,7 @@ public class Movement : MonoBehaviour
             rb.AddForce(jump, ForceMode2D.Impulse);
         }
         RaycastHit2D hit;
-        hit = Physics2D.Raycast(transform.position - new Vector3(0, sprite.bounds.extents.y + 0.5f, 0), Vector2.down, 0.1f);
+        hit = Physics2D.Raycast(transform.position - new Vector3(0, sprite.bounds.extents.y - 0.5f, 0), Vector2.down, 0.5f);
         if (hit)
         {
             isGrounded = true;
@@ -93,11 +91,14 @@ public class Movement : MonoBehaviour
         }
         else
             isGrounded = false;
-        
+        // Boudning
+        Vector3 minScreenBounds = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));
+        Vector3 maxScreenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
 
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, minScreenBounds.x + 1, maxScreenBounds.x - 1), Mathf.Clamp(transform.position.y, minScreenBounds.y + 1, maxScreenBounds.y - 3), transform.position.z);
 
         //Arm movement
-       
+
         arm.transform.localPosition = new Vector3(Input.GetAxis("HorizontalRStick"), Input.GetAxis("VerticalRStick"), 0).normalized;
 
         // Rotation of arm
@@ -106,9 +107,13 @@ public class Movement : MonoBehaviour
 
         //Aiming circle
 
-//__________________________________________________________________________________________________________________________________________
+        //__________________________________________________________________________________________________________________________________________
         //Rotation of PlayerCircle
-        circle.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        if ((Input.GetAxis("HorizontalRStick") != 0) || (Input.GetAxis("VerticalRStick") != 0))
+        {
+            circle.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
+
         //fading in or out the Aiming circle
         if ((Input.GetAxis("HorizontalRStick") != 0)  && isFaded == true|| (Input.GetAxis("VerticalRStick") != 0) && isFaded == true)
         {

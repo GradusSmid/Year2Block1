@@ -18,19 +18,22 @@ public class RefillWaterTank : MonoBehaviour
     }
     void OnTriggerStay2D(Collider2D col)
     {
-        if(col.gameObject.tag == "Player")
-        {   
-            GetComponentInChildren<WaterJetpack>().JetpackFuel=500;
-            Debug.Log(GetComponentInChildren<WaterJetpack>().JetpackFuel);
+        if (col.gameObject.tag == "Player")
+        {
+            col.GetComponentInChildren<WaterJetpack>().JetpackFuel = 500;
+            {
+
+            }
+
         }
         
     }
-        void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Player")
         {
-            if(col.gameObject.tag == "Player"){
-                waterRefil.Play();
-            }
+            waterRefil.Play();
+        }
     }
-
 }
 

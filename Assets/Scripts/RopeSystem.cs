@@ -50,6 +50,13 @@ public class RopeSystem : MonoBehaviour
     void Update()
     {
         // 3
+        if (player.name == "Player 4")
+        {
+            playerHor = Input.GetAxis("HorizontalRStickP4");
+            playerVer = Input.GetAxis("VerticalRStickP4");
+            firebuttonDown = Input.GetButtonDown("Fire1P4");
+            firebuttonUp = Input.GetButtonUp("Fire1P4");
+        }
         if (player.name == "Player 1")
         {
             
@@ -57,7 +64,6 @@ public class RopeSystem : MonoBehaviour
             playerVer = Input.GetAxis("VerticalRStick");
             firebuttonDown = Input.GetButtonDown("Fire1");
             firebuttonUp = Input.GetButtonUp("Fire1");
-
         }
         if (player.name == "Player 2")
         {
@@ -73,13 +79,7 @@ public class RopeSystem : MonoBehaviour
             firebuttonDown = Input.GetButtonDown("Fire1P3");
             firebuttonUp = Input.GetButtonUp("Fire1P3");
         }
-        if (player.name == "Player 4")
-        {
-            playerHor = Input.GetAxis("HorizontalRStickP4");
-            playerVer = Input.GetAxis("VerticalRStickP4");
-            firebuttonDown = Input.GetButtonDown("Fire1P4");
-            firebuttonUp = Input.GetButtonUp("Fire1P4");
-        }
+        
 
         var aimAngle = Mathf.Atan2(playerVer, playerHor);
         if (aimAngle < 0f)
@@ -134,6 +134,7 @@ public class RopeSystem : MonoBehaviour
         if (firebuttonDown)
         {
             // 2
+            Debug.Log("Fire");
             if (ropeAttached) return;
             ropeRenderer.enabled = true;
             var hit = Physics2D.Raycast(playerPosition, aimDirection, ropeMaxCastDistance, ropeLayerMask);
@@ -153,7 +154,6 @@ public class RopeSystem : MonoBehaviour
                     ropeJoint.enabled = true;
                     ropeHingeAnchorSprite.enabled = true;
                     hook.Play();
-
                 }
             }
             // 5

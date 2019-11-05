@@ -10,6 +10,7 @@ TagManager:
   - Shield
   - Waterfuel
   - Item
+  - InterObject
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - Rope
   - Player
   - PlayerAimCircle
-  - 
+  - Ungrabable
   - 
   - 
   - 
@@ -44,9 +45,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Background
+  - name: Foreground
     uniqueID: 757127867
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: New Layer
+    uniqueID: 2061262667
     locked: 0
