@@ -35,6 +35,7 @@ public class Movement : MonoBehaviour
     public AudioSource weaponPickup;
     public AudioSource jump1;
     public AudioSource shieldActivate;
+    public Animator anim;
 
     // Start is called before the first frame update
     void Start()
@@ -82,9 +83,15 @@ public class Movement : MonoBehaviour
             jump1.Play();
             Vector3 jump = new Vector3(0, jumpspeed, 0);
             rb.AddForce(jump, ForceMode2D.Impulse);
+            anim.SetBool("isJumping", true);
+            sprite.flipX = true ;
+        }
+        else
+        {
+            anim.SetBool("isJumping", false);
         }
         RaycastHit2D hit;
-        hit = Physics2D.Raycast(transform.position - new Vector3(0, sprite.bounds.extents.y - 0.5f, 0), Vector2.down, 0.5f);
+        hit = Physics2D.Raycast(transform.position - new Vector3(0, sprite.bounds.extents.y - 0.5f, 0), Vector2.down, 1f);
         if (hit)
         {
             isGrounded = true;

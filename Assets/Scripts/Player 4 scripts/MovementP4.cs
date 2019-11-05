@@ -171,16 +171,6 @@ public class MovementP4 : MonoBehaviour
             handIsEmpty = false;
         }
     }
-    private void OnBecameInvisible()
-    {
-        if (this.gameObject.activeInHierarchy == true)
-            StartCoroutine("Die");
-    }
-
-    private void OnBecameVisible()
-    {
-        StopCoroutine("Die");
-    }
     IEnumerator fadeOut()
     {
         for (float f = 1f; f >= -0.05f; f -= 0.10f)
