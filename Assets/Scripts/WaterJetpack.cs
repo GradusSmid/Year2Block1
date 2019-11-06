@@ -96,7 +96,7 @@ public class WaterJetpack : MonoBehaviour
         }
 
             //playing audio (im proud of this one)
-         if (playerHor != 0 && JetpackFuel >= 0 && buttonDown == true|| playerVer != 0 && JetpackFuel >= 0 && buttonDown == true)
+         if ( JetpackFuel >= 0 && buttonDown == true)
         {
             watershoot.Play();
             watershoot.loop = true;
