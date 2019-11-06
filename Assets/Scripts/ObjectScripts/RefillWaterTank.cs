@@ -12,19 +12,11 @@ public class RefillWaterTank : MonoBehaviour
          waterRefil = GetComponent<AudioSource>();
     }
 
-    void Update()
-    {
-        
-    }
     void OnTriggerStay2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Player")
+        if (col.gameObject.tag == "Player" && col.gameObject.transform.Find("WaterJetpack"))
         {
             col.GetComponentInChildren<WaterJetpack>().JetpackFuel = 500;
-            {
-
-            }
-
         }
         
     }
