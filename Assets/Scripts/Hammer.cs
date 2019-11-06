@@ -49,7 +49,7 @@ public class Hammer : MonoBehaviour
             forceDirection = col.transform.position - transform.position;
             if(anim.GetCurrentAnimatorStateInfo(0).IsName("HammerSwing"))
             {
-                col.gameObject.GetComponentInParent<Rigidbody2D>().AddForceAtPosition(forceDirection * 1000, transform.position);
+                col.gameObject.GetComponentInParent<Rigidbody2D>().AddForceAtPosition(forceDirection * 300, transform.position);
             }
             
         }
