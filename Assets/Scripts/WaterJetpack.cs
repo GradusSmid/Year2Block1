@@ -88,7 +88,7 @@ public class WaterJetpack : MonoBehaviour
                     if (hit.collider.gameObject.tag == "Player" || hit.collider.gameObject.tag == "Player")
                     {
                         forceDirection = hit.transform.position - transform.position;
-                        hit.rigidbody.AddForceAtPosition(forceDirection.normalized * 25, transform.position);
+                        hit.rigidbody.AddForceAtPosition(forceDirection.normalized * 45, transform.position);
                     }
             }
                 else
