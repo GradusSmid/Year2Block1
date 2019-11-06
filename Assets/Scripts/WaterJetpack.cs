@@ -73,7 +73,7 @@ public class WaterJetpack : MonoBehaviour
         //Using Jetpack
         if (playerHor != 0 && JetpackFuel >= 0 && button || playerVer != 0 && JetpackFuel >= 0 && button)
         {
-            rb.AddForce(-arm.transform.localPosition * 28);
+            rb.AddForce(-arm.transform.localPosition * 100);
             lr.enabled = true;
             JetpackFuel--;
             
@@ -88,7 +88,7 @@ public class WaterJetpack : MonoBehaviour
                     if (hit.collider.gameObject.tag == "Player" || hit.collider.gameObject.tag == "Player")
                     {
                         forceDirection = hit.transform.position - transform.position;
-                        hit.rigidbody.AddForceAtPosition(forceDirection.normalized * 45, transform.position);
+                        hit.rigidbody.AddForceAtPosition(forceDirection.normalized * 100, transform.position);
                     }
             }
                 else
