@@ -88,11 +88,11 @@ public class WaterJetpack : MonoBehaviour
                     if (hit.collider.gameObject.tag == "Player" || hit.collider.gameObject.tag == "Player")
                     {
                         forceDirection = hit.transform.position - transform.position;
-                        hit.rigidbody.AddForceAtPosition(forceDirection.normalized * 100, transform.position);
+                        hit.rigidbody.AddForceAtPosition(forceDirection.normalized * 5, transform.position);
                     }
             }
                 else
-                    lr.SetPosition(1, arm.transform.localPosition * 5000);
+                    lr.SetPosition(1, arm.transform.localPosition * 10);
         }
 
             //playing audio (im proud of this one)
