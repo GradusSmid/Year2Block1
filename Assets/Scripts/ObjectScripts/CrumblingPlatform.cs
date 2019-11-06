@@ -16,9 +16,10 @@ public class CrumblingPlatform : MonoBehaviour
 
     IEnumerator Destroy()
     {
+        fadeOut();
         yield return new WaitForSeconds(2f);
         gameObject.GetComponent<Collider2D>().enabled = false;
-        gameObject.GetComponent<MeshRenderer>().enabled = false;
+
         Debug.Log("Kaput");
         yield return new WaitForSeconds(1f);
         Debug.Log("Fixed");
@@ -26,5 +27,26 @@ public class CrumblingPlatform : MonoBehaviour
         gameObject.GetComponent<MeshRenderer>().enabled = true;
         didHit = false;
         yield return null;
+    }
+
+    IEnumerator fadeOut()
+    {
+        for (float f = 1f; f >= -0.05f; f -= 0.10f)
+        {
+            Color c = this.GetComponent<SpriteRenderer>().material.color;
+            c.a = f;
+            this.GetComponent<SpriteRenderer>().material.color = c;
+            yield return null;
+        }
+    }
+    IEnumerator fadeIn()
+    {
+        for (float f = 0.05f; f <= 1; f += 0.10f)
+        {
+            Color c = this.GetComponent<SpriteRenderer>().material.color;
+            c.a = f;
+            this.GetComponent<SpriteRenderer>().material.color = c;
+            yield return null;
+        }
     }
 } 
