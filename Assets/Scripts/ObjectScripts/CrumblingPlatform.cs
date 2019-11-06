@@ -11,12 +11,13 @@ public class CrumblingPlatform : MonoBehaviour
         if (GetComponent<SpriteRenderer>().material.color.a <= 0.1)
         {
             gameObject.GetComponent<Collider2D>().enabled = false;
+            StartCoroutine("wait");
             StartCoroutine("fadeIn");
+            didHit = false;
         }
         if(GetComponent<SpriteRenderer>().material.color.a >= 0.9)
         {
             gameObject.GetComponent<Collider2D>().enabled = true;
-            didHit = false;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -37,6 +38,11 @@ public class CrumblingPlatform : MonoBehaviour
             this.GetComponent<SpriteRenderer>().material.color = c;
             yield return null;
         }
+    }
+    IEnumerator wait()
+    {
+        yield return new WaitForSeconds(1f);
+        yield return null;
     }
     IEnumerator fadeIn()
     {
