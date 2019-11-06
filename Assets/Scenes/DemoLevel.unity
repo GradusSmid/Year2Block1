@@ -34295,12 +34295,12 @@ PrefabInstance:
     - target: {fileID: 4636042754212328582, guid: accfd3f142e35b24c918f74abdc0579e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.64
+      value: 25.34
       objectReference: {fileID: 0}
     - target: {fileID: 4636042754212328582, guid: accfd3f142e35b24c918f74abdc0579e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.25
+      value: 7.38
       objectReference: {fileID: 0}
     - target: {fileID: 4636042754212328582, guid: accfd3f142e35b24c918f74abdc0579e,
         type: 3}
@@ -51282,25 +51282,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &1967056199 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6209897371988840854, guid: 72b48f11d7c653649a5baeec6845201a,
-    type: 3}
-  m_PrefabInstance: {fileID: 833549174}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1967056200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1967056199}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5655efe4cd6182a4392d82837bf68d1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waterRefil: {fileID: 0}
 --- !u!1 &1970176056
 GameObject:
   m_ObjectHideFlags: 0
