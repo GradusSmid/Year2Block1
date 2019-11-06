@@ -9,6 +9,9 @@ public class Hammer : MonoBehaviour
     public GameObject circle;
     public AudioSource hammer;
     private Animator anim;
+
+    private float playerHor;
+    private float playerVer;
     // Update is called once per frame
     private void Start()
     {
@@ -22,19 +25,29 @@ public class Hammer : MonoBehaviour
         if (player.name == "Player 1")
         {
             fireButtonDown = Input.GetButton("Fire1");
+            playerHor = Input.GetAxis("HorizontalRStick");
+            playerVer = Input.GetAxis("VerticalRStick");
+
             circle = player.transform.GetChild(2).gameObject;
         }
         if (player.name == "Player 2")
         {
+            playerHor = Input.GetAxis("HorizontalRStickP2");
+            playerVer = Input.GetAxis("VerticalRStickP2");
             fireButtonDown = Input.GetButton("Fire1P2");
         }
         if (player.name == "Player 3")
         {
+            playerHor = Input.GetAxis("HorizontalRStickP3");
+            playerVer = Input.GetAxis("VerticalRStickP3");
             fireButtonDown = Input.GetButton("Fire1P3");
         }
         if (player.name == "Player 4")
+
         {
             fireButtonDown = Input.GetButton("Fire1P4");
+            playerHor = Input.GetAxis("HorizontalRStickP4");
+            playerVer = Input.GetAxis("VerticalRStickP4");
         }
 
     }
@@ -47,8 +60,8 @@ public class Hammer : MonoBehaviour
             hammer.Play();
             Debug.Log("Smashh");
             anim.SetBool("Swing", true);
-            forceDirection = col.transform.position - circle.transform.position;
-            col.gameObject.GetComponentInParent<Rigidbody2D>().AddForceAtPosition(forceDirection * 300 , transform.position);   
+            forceDirection = col.transform.position - transform.position;
+            col.gameObject.GetComponentInParent<Rigidbody2D>().AddForceAtPosition(forceDirection * 300 , Vector3.up);   
         }
         else
         anim.SetBool("Swing", false);
