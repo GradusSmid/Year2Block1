@@ -22,17 +22,21 @@ public class AnchorMovement : MonoBehaviour
 
     private float CameraEulerX;
     private Vector3 CameraPosition;
-
+    private int restartLevel;
     // Start is called before the first frame update
 
     // Update is called once per frame
+    private void Start()
+    {
+        restartLevel = SceneManager.GetActiveScene().buildIndex ;
+    }
     private void LateUpdate()
     {
         CalculateCameraLocations();
         MoveCamera();
         if(Players.Count == 0)
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(restartLevel);
         }
     }
 
@@ -81,12 +85,6 @@ public class AnchorMovement : MonoBehaviour
 
         averageCenter = (totalPositions / Players.Count);
         float extents = (playerBounds.extents.x + playerBounds.extents.y);
-    //    float lerpPercent = Mathf.InverseLerp(0, (FocusLevel.HalfXBounds + FocusLevel.HalfYBounds) / 2, extents);
-
-     //   float depth = Mathf.Lerp(DepthMax, DepthMin, lerpPercent);
-      //  float angle = Mathf.Lerp(AngleMax, AngleMin, lerpPercent);
-
-       // CameraEulerX = angle;
         CameraPosition = new Vector3(averageCenter.x, averageCenter.y);
 
     }

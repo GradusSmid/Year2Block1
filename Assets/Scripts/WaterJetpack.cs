@@ -16,6 +16,7 @@ public class WaterJetpack : MonoBehaviour
     private float playerVer;
     private bool buttonDown;
     private bool buttonUp;
+    private bool button;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +43,7 @@ public class WaterJetpack : MonoBehaviour
             playerVer = Input.GetAxis("VerticalRStick");
             buttonDown = Input.GetButtonDown("Fire1");
             buttonUp = Input.GetButtonUp("Fire1");
+            button = Input.GetButton("Fire1");
         }
         if(player.name == "Player 2")
         {
@@ -49,6 +51,7 @@ public class WaterJetpack : MonoBehaviour
             playerVer = Input.GetAxis("VerticalRStickP2");
             buttonDown = Input.GetButtonDown("Fire1P2");
             buttonUp = Input.GetButtonUp("Fire1P2");
+            button = Input.GetButton("Fire1P2");
         }
         if (player.name == "Player 3")
         {
@@ -56,6 +59,7 @@ public class WaterJetpack : MonoBehaviour
             playerVer = Input.GetAxis("VerticalRStickP3");
             buttonDown = Input.GetButtonDown("Fire1P3");
             buttonUp = Input.GetButtonUp("Fire1P3");
+            button = Input.GetButton("Fire1P3");
         }
         if (player.name == "Player 4")
         {
@@ -63,10 +67,11 @@ public class WaterJetpack : MonoBehaviour
             playerVer = Input.GetAxis("VerticalRStickP4");
             buttonDown = Input.GetButtonDown("Fire1P4");
             buttonUp = Input.GetButtonUp("Fire1P4");
+            button = Input.GetButton("Fire1P4");
         }
         Debug.DrawRay(arm.transform.position,arm.transform.localPosition , Color.blue);
         //Using Jetpack
-        if (playerHor != 0 && JetpackFuel >= 0 && Input.GetButton("Fire1") || playerVer != 0 && JetpackFuel >= 0 && Input.GetButton("Fire1"))
+        if (playerHor != 0 && JetpackFuel >= 0 && button || playerVer != 0 && JetpackFuel >= 0 && button)
         {
             rb.AddForce(-arm.transform.localPosition * 28);
             lr.enabled = true;

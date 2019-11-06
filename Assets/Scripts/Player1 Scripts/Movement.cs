@@ -35,6 +35,7 @@ public class Movement : MonoBehaviour
     public AudioSource weaponPickup;
     public AudioSource jump1;
     public AudioSource shieldActivate;
+    public Animator anim;
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +45,6 @@ public class Movement : MonoBehaviour
         sounds = GetComponents<AudioSource>();
         weaponPickup = sounds[0];
         jump1 = sounds[1];
-        shieldActivate = sounds[2];
     }
 
     // Update is called once per frame
@@ -52,16 +52,23 @@ public class Movement : MonoBehaviour
     {
         //Move Left and Right
         horizontalInput = Input.GetAxis("Horizontal");
-        if (horizontalInput < 0f || horizontalInput > 0f)
+        if (horizontalInput != 0)
         {
-            GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
-            arm.GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
-            transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
+            GetComponent<SpriteRenderer>().flipX = horizontalInput < 0f;
+            arm.GetComponent<SpriteRenderer>().flipX = horizontalInput < 0f;
+            transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().flipX = horizontalInput < 0f;
+            anim.SetBool("isRunning", true);
         }
+        else if (horizontalInput == 0)
+        {
+            anim.SetBool("isRunning", false);
+        }
+
         if (Input.GetAxis("Horizontal") >= 0.90f || Input.GetAxis("Horizontal") <= -0.90f)
         {
             speed = 15;
         }
+
         else if (Input.GetAxis("Horizontal") >= 0.60f || Input.GetAxis("Horizontal") <= -0.60f)
         {
             speed = 10;
@@ -81,17 +88,21 @@ public class Movement : MonoBehaviour
         {
             jump1.Play();
             Vector3 jump = new Vector3(0, jumpspeed, 0);
-            rb.AddForce(jump, ForceMode2D.Impulse);
+            rb.AddForce(jump, ForceMode2D.Impulse);            
         }
+        
         RaycastHit2D hit;
         hit = Physics2D.Raycast(transform.position - new Vector3(0, sprite.bounds.extents.y - 0.5f, 0), Vector2.down, 0.5f);
         if (hit)
         {
             isGrounded = true;
-
+            anim.SetBool("isFalling", false);
         }
         else
+        {
             isGrounded = false;
+            anim.SetBool("isJumping", true);
+        }
         // Boudning
         Vector3 minScreenBounds = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));
         Vector3 maxScreenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
@@ -110,7 +121,7 @@ public class Movement : MonoBehaviour
 
         //__________________________________________________________________________________________________________________________________________
         //Rotation of PlayerCircle
-        if ((Input.GetAxis("HorizontalRStick") != 0) && isFaded == true || (Input.GetAxis("VerticalRStick") != 0))
+        if ((Input.GetAxis("HorizontalRStick") != 0) || (Input.GetAxis("VerticalRStick") != 0))
         {
             circle.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
