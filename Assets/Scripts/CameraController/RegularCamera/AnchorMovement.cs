@@ -85,12 +85,6 @@ public class AnchorMovement : MonoBehaviour
 
         averageCenter = (totalPositions / Players.Count);
         float extents = (playerBounds.extents.x + playerBounds.extents.y);
-    //    float lerpPercent = Mathf.InverseLerp(0, (FocusLevel.HalfXBounds + FocusLevel.HalfYBounds) / 2, extents);
-
-     //   float depth = Mathf.Lerp(DepthMax, DepthMin, lerpPercent);
-      //  float angle = Mathf.Lerp(AngleMax, AngleMin, lerpPercent);
-
-       // CameraEulerX = angle;
         CameraPosition = new Vector3(averageCenter.x, averageCenter.y);
 
     }
