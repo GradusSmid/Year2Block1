@@ -8,31 +8,34 @@ public class Hammer : MonoBehaviour
     public GameObject player;
 
     public AudioSource hammer;
+    private Animator anim;
     // Update is called once per frame
     private void Start()
     {
         player = transform.parent.gameObject.transform.parent.gameObject;
         hammer = GetComponent<AudioSource>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
     {
         if (player.name == "Player 1")
         {
-            fireButtonDown = Input.GetButtonDown("Fire1");
+            fireButtonDown = Input.GetButton("Fire1");
         }
         if (player.name == "Player 2")
         {
-            fireButtonDown = Input.GetButtonDown("Fire1P2");
+            fireButtonDown = Input.GetButton("Fire1P2");
         }
         if (player.name == "Player 3")
         {
-            fireButtonDown = Input.GetButtonDown("Fire1P3");
+            fireButtonDown = Input.GetButton("Fire1P3");
         }
         if (player.name == "Player 4")
         {
-            fireButtonDown = Input.GetButtonDown("Fire1P4");
+            fireButtonDown = Input.GetButton("Fire1P4");
         }
+
     }
     private void OnTriggerStay2D(Collider2D col)
     {
@@ -42,9 +45,15 @@ public class Hammer : MonoBehaviour
         {
             hammer.Play();
             Debug.Log("Smashh");
+            anim.SetBool("Swing", true);
             forceDirection = col.transform.position - transform.position;
-            col.gameObject.GetComponentInParent<Rigidbody2D>().AddForceAtPosition(forceDirection.normalized * 500, transform.position);
+            if(anim.GetCurrentAnimatorStateInfo(0).IsName("HammerSwing"))
+            {
+                col.gameObject.GetComponentInParent<Rigidbody2D>().AddForceAtPosition(forceDirection * 1000, transform.position);
             }
-           
+            
+        }
+        else
+        anim.SetBool("Swing", false);
     }
 }
