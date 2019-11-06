@@ -11,20 +11,21 @@ public class CrumblingPlatform : MonoBehaviour
         {
             didHit = true;
             StartCoroutine("Destroy");
+            fadeOut();
         }
     }
 
     IEnumerator Destroy()
     {
-        fadeOut();
-        yield return new WaitForSeconds(2f);
+
+        yield return new WaitForSeconds(1f);
         gameObject.GetComponent<Collider2D>().enabled = false;
 
         Debug.Log("Kaput");
         yield return new WaitForSeconds(1f);
         Debug.Log("Fixed");
         gameObject.GetComponent<Collider2D>().enabled = true;
-        gameObject.GetComponent<MeshRenderer>().enabled = true;
+        fadeIn();
         didHit = false;
         yield return null;
     }

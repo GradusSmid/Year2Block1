@@ -6,7 +6,7 @@ public class Hammer : MonoBehaviour
 {
     private bool fireButtonDown;
     public GameObject player;
-
+    public GameObject circle;
     public AudioSource hammer;
     private Animator anim;
     // Update is called once per frame
@@ -22,6 +22,7 @@ public class Hammer : MonoBehaviour
         if (player.name == "Player 1")
         {
             fireButtonDown = Input.GetButton("Fire1");
+            circle = player.transform.GetChild(2).gameObject;
         }
         if (player.name == "Player 2")
         {
@@ -46,12 +47,8 @@ public class Hammer : MonoBehaviour
             hammer.Play();
             Debug.Log("Smashh");
             anim.SetBool("Swing", true);
-            forceDirection = col.transform.position - transform.position;
-            if(anim.GetCurrentAnimatorStateInfo(0).IsName("HammerSwing"))
-            {
-                col.gameObject.GetComponentInParent<Rigidbody2D>().AddForceAtPosition(forceDirection * 300, transform.position);
-            }
-            
+            forceDirection = col.transform.position + circle.transform.position;
+            col.gameObject.GetComponentInParent<Rigidbody2D>().AddForceAtPosition(forceDirection * 300 , transform.position);   
         }
         else
         anim.SetBool("Swing", false);
