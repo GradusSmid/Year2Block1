@@ -91,9 +91,8 @@ public class Movement : MonoBehaviour
             Vector3 jump = new Vector3(0, jumpspeed, 0);
             rb.AddForce(jump, ForceMode2D.Impulse);            
         }
-        
         RaycastHit2D hit;
-        hit = Physics2D.Raycast(transform.position - new Vector3(0, sprite.bounds.extents.y - 0.5f, 0), Vector2.down, 0.5f);
+        hit = Physics2D.Raycast(transform.position - new Vector3(0, sprite.bounds.extents.y - 0.1f, 0), Vector2.down, 0.5f);
         if (hit)
         {
             isGrounded = true;
@@ -120,12 +119,12 @@ public class Movement : MonoBehaviour
            
             arm.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
-        else if (Input.GetAxis("HorizontalRStick") >= 0)
+        if (Input.GetAxis("HorizontalRStick") >= 0 && usingHammer == true)
         {
             arm.transform.localPosition = new Vector3(-1, 0, 0).normalized;
             arm.transform.rotation = Quaternion.AngleAxis(90, new Vector3(0, 0, 90));
         }
-        else if(Input.GetAxis("HorizontalRStick") <= 0)
+        if(Input.GetAxis("HorizontalRStick") <= 0 && usingHammer == true)
         {
             arm.transform.localPosition = new Vector3(1, 0, 0).normalized;
             arm.transform.rotation = Quaternion.AngleAxis(90, new Vector3(0,0,-90));
