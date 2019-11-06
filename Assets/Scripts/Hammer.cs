@@ -47,7 +47,7 @@ public class Hammer : MonoBehaviour
             hammer.Play();
             Debug.Log("Smashh");
             anim.SetBool("Swing", true);
-            forceDirection = col.transform.position + circle.transform.position;
+            forceDirection = col.transform.position - circle.transform.position;
             col.gameObject.GetComponentInParent<Rigidbody2D>().AddForceAtPosition(forceDirection * 300 , transform.position);   
         }
         else
