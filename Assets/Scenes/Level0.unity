@@ -12659,7 +12659,7 @@ Tilemap:
   - m_RefCount: 1344
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.49803922, g: 0.7058824, b: 0.6666667, a: 1}
   m_Origin: {x: -13, y: -11, z: 0}
   m_Size: {x: 119, y: 62, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -56784,7 +56784,7 @@ Transform:
   - {fileID: 487104012}
   - {fileID: 1730147887}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1848614760
 MonoBehaviour:
