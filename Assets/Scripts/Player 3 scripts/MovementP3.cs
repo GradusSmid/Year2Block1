@@ -36,7 +36,7 @@ public class MovementP3 : MonoBehaviour
     public AudioSource[] sounds;
     public AudioSource weaponPickup;
     public AudioSource jump3;
-
+    public Animator anim;
 
     // Start is called before the first frame update
     void Start()
@@ -57,6 +57,7 @@ public class MovementP3 : MonoBehaviour
             GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
             arm.GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
             transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
+            anim.SetBool("isRunning", true);
         }
         //Move Left and Right
         horizontalInput = Input.GetAxis("HorizontalP3");
@@ -84,16 +85,21 @@ public class MovementP3 : MonoBehaviour
             jump3.Play();
             Vector3 jump = new Vector3(0, jumpspeed, 0);
             rb.AddForce(jump, ForceMode2D.Impulse);
+            anim.SetBool("isJumping", true);
         }
         RaycastHit2D hit;
         hit = Physics2D.Raycast(transform.position - new Vector3(0, sprite.bounds.extents.y - 0.5f, 0), Vector2.down, 0.5f);
         if (hit)
         {
             isGrounded = true;
-
+            anim.SetBool("isFalling", false);
         }
         else
+        {
+            anim.SetBool("isFalling", true);
+            anim.SetBool("isJumping", false);
             isGrounded = false;
+        }
 
         // Boudning
         Vector3 minScreenBounds = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));
