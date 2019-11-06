@@ -119,12 +119,20 @@ public class Movement : MonoBehaviour
            
             arm.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
-        else
+        else if (Input.GetAxis("HorizontalRStick") >= 0)
         {
             arm.transform.localPosition = new Vector3(-1, 0, 0).normalized;
-            arm.transform.rotation = Quaternion.AngleAxis(90, new Vector3(0,0,90));
+            arm.transform.rotation = Quaternion.AngleAxis(90, new Vector3(0, 0, 90));
         }
-            
+        else if(Input.GetAxis("HorizontalRStick") <= 0)
+        {
+            arm.transform.localPosition = new Vector3(1, 0, 0).normalized;
+            arm.transform.rotation = Quaternion.AngleAxis(90, new Vector3(0,0,-90));
+        }
+
+
+
+
         //Aiming circle
 
         //__________________________________________________________________________________________________________________________________________
