@@ -41,7 +41,7 @@ public class WaterJetpack : MonoBehaviour
         {
             playerHor = Input.GetAxis("HorizontalRStick");
             playerVer = Input.GetAxis("VerticalRStick");
-            buttonDown = Input.GetButton("Fire1");
+            buttonDown = Input.GetButtonDown("Fire1");
             buttonUp = Input.GetButtonUp("Fire1");
             button = Input.GetButton("Fire1");
         }
@@ -49,7 +49,7 @@ public class WaterJetpack : MonoBehaviour
         {
             playerHor = Input.GetAxis("HorizontalRStickP2");
             playerVer = Input.GetAxis("VerticalRStickP2");
-            buttonDown = Input.GetButton("Fire1P2");
+            buttonDown = Input.GetButtonDown("Fire1P2");
             buttonUp = Input.GetButtonUp("Fire1P2");
             button = Input.GetButton("Fire1P2");
         }
@@ -57,7 +57,7 @@ public class WaterJetpack : MonoBehaviour
         {
             playerHor = Input.GetAxis("HorizontalRStickP3");
             playerVer = Input.GetAxis("VerticalRStickP3");
-            buttonDown = Input.GetButton("Fire1P3");
+            buttonDown = Input.GetButtonDown("Fire1P3");
             buttonUp = Input.GetButtonUp("Fire1P3");
             button = Input.GetButton("Fire1P3");
         }
@@ -65,7 +65,7 @@ public class WaterJetpack : MonoBehaviour
         {
             playerHor = Input.GetAxis("HorizontalRStickP4");
             playerVer = Input.GetAxis("VerticalRStickP4");
-            buttonDown = Input.GetButton("Fire1P4");
+            buttonDown = Input.GetButtonDown("Fire1P4");
             buttonUp = Input.GetButtonUp("Fire1P4");
             button = Input.GetButton("Fire1P4");
         }
