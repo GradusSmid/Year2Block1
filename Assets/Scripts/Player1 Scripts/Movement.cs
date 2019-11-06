@@ -89,7 +89,8 @@ public class Movement : MonoBehaviour
         {
             jump1.Play();
             Vector3 jump = new Vector3(0, jumpspeed, 0);
-            rb.AddForce(jump, ForceMode2D.Impulse);            
+            rb.AddForce(jump, ForceMode2D.Impulse);
+            anim.SetBool("isJumping", true);
         }
         RaycastHit2D hit;
         hit = Physics2D.Raycast(transform.position - new Vector3(0, sprite.bounds.extents.y - 0.1f, 0), Vector2.down, 0.5f);
@@ -100,8 +101,9 @@ public class Movement : MonoBehaviour
         }
         else
         {
+            anim.SetBool("isFalling", true);
+            anim.SetBool("isJumping", false);
             isGrounded = false;
-            anim.SetBool("isJumping", true);
         }
         // Boudning
         Vector3 minScreenBounds = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));

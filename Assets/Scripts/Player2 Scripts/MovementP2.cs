@@ -35,6 +35,7 @@ public class MovementP2 : MonoBehaviour
     public AudioSource[] sounds;
     public AudioSource weaponPickup;
     public AudioSource jump2;
+    public Animator anim;
     // Start is called before the first frame update
     void Start()
     {
@@ -54,6 +55,7 @@ public class MovementP2 : MonoBehaviour
             GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
             arm.GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
             transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
+            anim.SetBool("isRunning", true);
         }
         //Move Left and Right
         if (Input.GetAxis("HorizontalP2") >= 0.90f || Input.GetAxis("HorizontalP2") <= -0.90f)
@@ -78,16 +80,21 @@ public class MovementP2 : MonoBehaviour
             jump2.Play();
             Vector3 jump = new Vector3(0, jumpspeed, 0);
             rb.AddForce(jump, ForceMode2D.Impulse);
+            anim.SetBool("isJumping", true);
         }
         RaycastHit2D hit;
         hit = Physics2D.Raycast(transform.position - new Vector3(0, sprite.bounds.extents.y - 0.5f, 0), Vector2.down, 0.5f);
         if (hit)
         {
             isGrounded = true;
-
+            anim.SetBool("isFalling", false);
         }
         else
+        {
+            anim.SetBool("isFalling", true);
+            anim.SetBool("isJumping", false);
             isGrounded = false;
+        }
 
         // Boudning
         Vector3 minScreenBounds = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));
@@ -97,11 +104,26 @@ public class MovementP2 : MonoBehaviour
 
         //Arm movement
 
-        arm.transform.localPosition = new Vector3(Input.GetAxis("HorizontalRStickP2"), Input.GetAxis("VerticalRStickP2"), 0).normalized;
-        arm.transform.rotation = Quaternion.identity;
         // Rotation of arm
         float angle = Mathf.Atan2(-Input.GetAxis("HorizontalRStickP2"), Input.GetAxis("VerticalRStickP2")) * Mathf.Rad2Deg;
-        arm.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        if (usingHammer == false)
+        {
+            arm.transform.localPosition = new Vector3(Input.GetAxis("HorizontalRStickP2"), Input.GetAxis("VerticalRStickP2"), 0).normalized;
+
+            // Rotation of arm
+
+            arm.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
+        if (Input.GetAxis("HorizontalRStickP2") >= 0 && usingHammer == true)
+        {
+            arm.transform.localPosition = new Vector3(-1, 0, 0).normalized;
+            arm.transform.rotation = Quaternion.AngleAxis(90, new Vector3(0, 0, 90));
+        }
+        if (Input.GetAxis("HorizontalRStickP2") <= 0 && usingHammer == true)
+        {
+            arm.transform.localPosition = new Vector3(1, 0, 0).normalized;
+            arm.transform.rotation = Quaternion.AngleAxis(90, new Vector3(0, 0, -90));
+        }
 
 
         //Rotation of PlayerCircle
