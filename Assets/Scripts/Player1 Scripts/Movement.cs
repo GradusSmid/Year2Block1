@@ -12,14 +12,16 @@ public class Movement : MonoBehaviour
     private Rigidbody2D rb;
     public GameObject arm;
     public SpriteRenderer circle;
+    public SpriteRenderer rectangle;
+    public SpriteRenderer outerRectangle;
     private bool isFaded;
     private bool handIsEmpty = true;
     private float horizontalInput;
     private SpriteRenderer sprite;
-
     //Jetpack values
     public GameObject Jetpack;
     private bool usingJetpack;
+    private GameObject childJetpack;
     //Hammer values
     public GameObject hammer;
     private bool usingHammer;
@@ -83,7 +85,6 @@ public class Movement : MonoBehaviour
         transform.Translate(translation, 0, 0);
 
         //Jump
-        //Jump
         if ((isGrounded == true) && (Input.GetButtonDown("Jump") == true))
         {
             jump1.Play();
@@ -118,7 +119,6 @@ public class Movement : MonoBehaviour
         arm.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         //Aiming circle
-
         //__________________________________________________________________________________________________________________________________________
         //Rotation of PlayerCircle
         if ((Input.GetAxis("HorizontalRStick") != 0) || (Input.GetAxis("VerticalRStick") != 0))
@@ -139,18 +139,30 @@ public class Movement : MonoBehaviour
             StartCoroutine("fadeOut");
             isFaded = true;
         }
-//      ___________________________________________________________________________________________________________________________
+
+        // Jetpack bar
+        //__________________________________________________________________________________________________________________________________________
+        rectangle.color = new Color(1f, 1f, 1f, 0f);
+        outerRectangle.color = new Color(1f, 1f, 1f, 0f);
+        if (usingJetpack)
+        {
+            rectangle.color = new Color(1f, 1f, 1f, 1f);
+            outerRectangle.color = new Color(1f, 1f, 1f, 1f);
+            float fuel = childJetpack.GetComponent<WaterJetpack>().JetpackFuel;
+            rectangle.transform.localScale = new Vector3(rectangle.transform.localScale.x, fuel/500, 1);
+        }
 
     }
-        //Getting the Jetpack
+
+    //Getting the Jetpack
     void OnTriggerEnter2D(Collider2D col)
     { 
         if (col.gameObject.tag == "Jetpack" && usingJetpack == false && handIsEmpty == true)
         {
             weaponPickup.Play();
             Debug.Log("Time to fly");
-            GameObject ChildJetpack = Instantiate(Jetpack, arm.transform.position, Quaternion.identity);
-            ChildJetpack.transform.parent = arm.transform;
+            childJetpack = Instantiate(Jetpack, arm.transform.position, Quaternion.identity);
+            childJetpack.transform.parent = arm.transform;
             usingJetpack = true;
             handIsEmpty = false;
         }
@@ -186,6 +198,7 @@ public class Movement : MonoBehaviour
             handIsEmpty = false; 
         }
     }
+
     IEnumerator fadeOut()
     {
         for(float f = 1f; f >= -0.05f; f -= 0.10f)
@@ -196,6 +209,7 @@ public class Movement : MonoBehaviour
             yield return null;
         }
     }
+
     IEnumerator fadeIn()
     {
         for (float f = 0.05f; f <= 1; f += 0.10f)

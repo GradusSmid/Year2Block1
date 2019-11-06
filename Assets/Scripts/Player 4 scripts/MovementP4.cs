@@ -9,16 +9,19 @@ public class MovementP4 : MonoBehaviour
     public float speed;
     public float jumpspeed = 35;
     public bool isGrounded;
-    private SpriteRenderer sprite;
     private Rigidbody2D rb;
     public GameObject arm;
+    public SpriteRenderer circle;
+    public SpriteRenderer rectangle;
+    public SpriteRenderer outerRectangle;
+    private bool isFaded;
     private bool handIsEmpty = true;
     private float horizontalInput;
-    public SpriteRenderer circle;
-    private bool isFaded;
+    private SpriteRenderer sprite;
     //Jetpack values
     public GameObject Jetpack;
     private bool usingJetpack;
+    private GameObject childJetpack;
     //Hammer values
     public GameObject hammer;
     private bool usingHammer;
@@ -29,6 +32,7 @@ public class MovementP4 : MonoBehaviour
     //Shield values
     public GameObject shield;
     private bool usingShield;
+    //audio
     public AudioSource[] sounds;
     public AudioSource weaponPickup;
     public AudioSource jump4;
@@ -126,7 +130,21 @@ public class MovementP4 : MonoBehaviour
             StartCoroutine("fadeOut");
             isFaded = true;
         }
+
+        // Jetpack bar
+        //__________________________________________________________________________________________________________________________________________
+        rectangle.color = new Color(1f, 1f, 1f, 0f);
+        outerRectangle.color = new Color(1f, 1f, 1f, 0f);
+        if (usingJetpack)
+        {
+            rectangle.color = new Color(1f, 1f, 1f, 1f);
+            outerRectangle.color = new Color(1f, 1f, 1f, 1f);
+            float fuel = childJetpack.GetComponent<WaterJetpack>().JetpackFuel;
+            rectangle.transform.localScale = new Vector3(rectangle.transform.localScale.x, fuel / 500, 1);
+        }
+
     }
+
     //Getting the Jetpack
     void OnTriggerEnter2D(Collider2D col)
     {
@@ -134,8 +152,8 @@ public class MovementP4 : MonoBehaviour
         {
             weaponPickup.Play();
             Debug.Log("Time to fly");
-            GameObject ChildJetpack = Instantiate(Jetpack, arm.transform.position, Quaternion.identity);
-            ChildJetpack.transform.parent = arm.transform;
+            childJetpack = Instantiate(Jetpack, arm.transform.position, Quaternion.identity);
+            childJetpack.transform.parent = arm.transform;
             usingJetpack = true;
             handIsEmpty = false;
         }
@@ -171,6 +189,7 @@ public class MovementP4 : MonoBehaviour
             handIsEmpty = false;
         }
     }
+
     IEnumerator fadeOut()
     {
         for (float f = 1f; f >= -0.05f; f -= 0.10f)
@@ -181,6 +200,7 @@ public class MovementP4 : MonoBehaviour
             yield return null;
         }
     }
+
     IEnumerator fadeIn()
     {
         for (float f = 0.05f; f <= 1; f += 0.10f)
