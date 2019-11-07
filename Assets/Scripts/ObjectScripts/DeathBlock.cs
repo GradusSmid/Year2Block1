@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class DeathBlock : MonoBehaviour {
     
-public AudioSource death;
+    public AudioSource death;
+    public GameObject DeathParticles;
 
     void Start(){
         death = GetComponent<AudioSource>();
@@ -16,6 +17,7 @@ public AudioSource death;
             death.Play();
             Debug.Log("deathtrap triggered");
             Destroy(other.gameObject); //kill player
+            Instantiate(DeathParticles, other.transform.position, Quaternion.identity);
         }
     }
 }
