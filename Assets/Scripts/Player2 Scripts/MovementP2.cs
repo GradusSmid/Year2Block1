@@ -52,10 +52,14 @@ public class MovementP2 : MonoBehaviour
         horizontalInput = Input.GetAxis("HorizontalP2");
         if (horizontalInput < 0f || horizontalInput > 0f)
         {
-            GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
-            arm.GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
-            transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
+            GetComponent<SpriteRenderer>().flipX = horizontalInput < 0f;
+            arm.GetComponent<SpriteRenderer>().flipX = horizontalInput < 0f;
+            transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().flipX = horizontalInput < 0f;
             anim.SetBool("isRunning", true);
+        }
+        else if (horizontalInput == 0)
+        {
+            anim.SetBool("isRunning", false);
         }
         //Move Left and Right
         if (Input.GetAxis("HorizontalP2") >= 0.90f || Input.GetAxis("HorizontalP2") <= -0.90f)
@@ -83,7 +87,7 @@ public class MovementP2 : MonoBehaviour
             anim.SetBool("isJumping", true);
         }
         RaycastHit2D hit;
-        hit = Physics2D.Raycast(transform.position - new Vector3(0, sprite.bounds.extents.y - 0.5f, 0), Vector2.down, 0.5f);
+        hit = Physics2D.Raycast(transform.position - new Vector3(0, sprite.bounds.extents.y - 0.1f, 0), Vector2.down, 0.5f);
         if (hit)
         {
             isGrounded = true;
