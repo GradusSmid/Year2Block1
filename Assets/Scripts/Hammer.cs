@@ -50,6 +50,14 @@ public class Hammer : MonoBehaviour
             playerVer = Input.GetAxis("VerticalRStickP4");
         }
 
+        if( fireButtonDown)
+        {
+            anim.SetBool("Swing", true);
+        }
+        else
+        {
+            anim.SetBool("Swing", false);
+        }
     }
     private void OnTriggerStay2D(Collider2D col)
     {
