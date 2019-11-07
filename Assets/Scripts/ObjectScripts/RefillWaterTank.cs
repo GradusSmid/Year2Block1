@@ -14,8 +14,9 @@ public class RefillWaterTank : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Player" && col.gameObject.transform.Find("WaterJetpack"))
-        {
+        if (col.gameObject.tag == "Player" && col.gameObject.transform.GetChild(0).GetChild(0).name == ("WaterJetpack(Clone)"))
+        { 
+            Debug.Log("waterrefill");
             col.GetComponentInChildren<WaterJetpack>().JetpackFuel = 500;
         }
         
