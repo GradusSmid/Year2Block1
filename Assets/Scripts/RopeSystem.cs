@@ -18,7 +18,7 @@ public class RopeSystem : MonoBehaviour
     public LineRenderer ropeRenderer;
 
     public LayerMask ropeLayerMask;
-    private float ropeMaxCastDistance = 20f;
+    private float ropeMaxCastDistance = 25;
     private List<Vector2> ropePositions = new List<Vector2>();
     private bool distanceSet;
     private bool firebuttonDown;
