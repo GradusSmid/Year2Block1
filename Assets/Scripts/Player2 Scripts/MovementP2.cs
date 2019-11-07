@@ -57,6 +57,19 @@ public class MovementP2 : MonoBehaviour
             transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
             anim.SetBool("isRunning", true);
         }
+        if (horizontalInput < 0)
+        {
+            transform.GetChild(1).localPosition = -new Vector3(1f, -1f, 0f);
+        }
+        if (horizontalInput > 0)
+        {
+            transform.GetChild(1).localPosition = -new Vector3(-1f, -1f, 0f);
+        }
+        else if (horizontalInput == 0)
+        {
+            anim.SetBool("isRunning", false);
+            transform.GetChild(1).localPosition = -new Vector3(0, -1f, 0f);
+        }
         //Move Left and Right
         if (Input.GetAxis("HorizontalP2") >= 0.90f || Input.GetAxis("HorizontalP2") <= -0.90f)
         {
@@ -68,6 +81,7 @@ public class MovementP2 : MonoBehaviour
         }
         
         else speed = 5;
+
         float translation = Input.GetAxis("HorizontalP2") * speed;
 
         translation *= Time.deltaTime;

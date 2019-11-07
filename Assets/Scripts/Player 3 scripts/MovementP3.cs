@@ -59,6 +59,19 @@ public class MovementP3 : MonoBehaviour
             transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().flipX = horizontalInput > 0f;
             anim.SetBool("isRunning", true);
         }
+        if (horizontalInput < 0)
+        {
+            transform.GetChild(1).localPosition = -new Vector3(1f, -1f, 0f);
+        }
+        if (horizontalInput > 0)
+        {
+            transform.GetChild(1).localPosition = -new Vector3(-1f, -1f, 0f);
+        }
+        else if (horizontalInput == 0)
+        {
+            anim.SetBool("isRunning", false);
+            transform.GetChild(1).localPosition = -new Vector3(0, -1f, 0f);
+        }
         //Move Left and Right
         horizontalInput = Input.GetAxis("HorizontalP3");
 
