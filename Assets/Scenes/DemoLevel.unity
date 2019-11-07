@@ -33513,8 +33513,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   death: {fileID: 0}
-  DeathParticles: {fileID: 5574315616237661001, guid: 72e83f5b2e651a445a2f6b468d429140,
-    type: 3}
+  DeathParticles: {fileID: 0}
 --- !u!61 &576202842
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -34007,8 +34006,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   death: {fileID: 0}
-  DeathParticles: {fileID: 5574315616237661001, guid: 72e83f5b2e651a445a2f6b468d429140,
-    type: 3}
+  DeathParticles: {fileID: 0}
 --- !u!61 &612010124
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -34494,6 +34492,11 @@ PrefabInstance:
       propertyPath: anim
       value: 
       objectReference: {fileID: 639255342}
+    - target: {fileID: 4636042753065608524, guid: accfd3f142e35b24c918f74abdc0579e,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: accfd3f142e35b24c918f74abdc0579e, type: 3}
 --- !u!1 &639255332 stripped
@@ -34568,8 +34571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   death: {fileID: 0}
-  DeathParticles: {fileID: 5574315616237661001, guid: 72e83f5b2e651a445a2f6b468d429140,
-    type: 3}
+  DeathParticles: {fileID: 0}
 --- !u!61 &662053885
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -37546,8 +37548,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   death: {fileID: 0}
-  DeathParticles: {fileID: 5574315616237661001, guid: 72e83f5b2e651a445a2f6b468d429140,
-    type: 3}
+  DeathParticles: {fileID: 0}
 --- !u!61 &1044253033
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -38737,8 +38738,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   death: {fileID: 0}
-  DeathParticles: {fileID: 5574315616237661001, guid: 72e83f5b2e651a445a2f6b468d429140,
-    type: 3}
+  DeathParticles: {fileID: 0}
 --- !u!61 &1106712142
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -41707,6 +41707,11 @@ PrefabInstance:
       propertyPath: anim
       value: 
       objectReference: {fileID: 669080627}
+    - target: {fileID: 6787980170228850600, guid: 1f494e24cd796b34b8a55e37605cba2c,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f494e24cd796b34b8a55e37605cba2c, type: 3}
 --- !u!1 &1458046273
@@ -51462,8 +51467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   death: {fileID: 0}
-  DeathParticles: {fileID: 5574315616237661001, guid: 72e83f5b2e651a445a2f6b468d429140,
-    type: 3}
+  DeathParticles: {fileID: 0}
 --- !u!61 &1950573565
 BoxCollider2D:
   m_ObjectHideFlags: 0
