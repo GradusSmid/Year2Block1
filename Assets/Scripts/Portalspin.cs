@@ -10,6 +10,6 @@ public class Portalspin : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      transform.Rotate(0, 0, 1);
+      transform.Rotate(0, 0, 10 * Time.deltaTime);
     }
 }

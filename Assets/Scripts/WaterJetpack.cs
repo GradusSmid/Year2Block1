@@ -28,7 +28,7 @@ public class WaterJetpack : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 forceDirection;
@@ -73,9 +73,9 @@ public class WaterJetpack : MonoBehaviour
         //Using Jetpack
         if (playerHor != 0 && JetpackFuel >= 0 && button || playerVer != 0 && JetpackFuel >= 0 && button)
         {
-            rb.AddForce(-arm.transform.localPosition * 50);
+            rb.AddForce(-arm.transform.localPosition * 85 );
             lr.enabled = true;
-            JetpackFuel--;
+            JetpackFuel --;
             
             RaycastHit2D hit = Physics2D.Raycast(arm.transform.position, arm.transform.localPosition, 10);
             //hit other players
