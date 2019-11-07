@@ -473,6 +473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   death: {fileID: 0}
+  DeathParticles: {fileID: 0}
 --- !u!1 &61846374
 GameObject:
   m_ObjectHideFlags: 0
@@ -32146,6 +32147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   death: {fileID: 0}
+  DeathParticles: {fileID: 0}
 --- !u!1001 &442086018
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33511,6 +33513,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   death: {fileID: 0}
+  DeathParticles: {fileID: 5574315616237661001, guid: 72e83f5b2e651a445a2f6b468d429140,
+    type: 3}
 --- !u!61 &576202842
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -34003,6 +34007,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   death: {fileID: 0}
+  DeathParticles: {fileID: 5574315616237661001, guid: 72e83f5b2e651a445a2f6b468d429140,
+    type: 3}
 --- !u!61 &612010124
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -34562,6 +34568,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   death: {fileID: 0}
+  DeathParticles: {fileID: 5574315616237661001, guid: 72e83f5b2e651a445a2f6b468d429140,
+    type: 3}
 --- !u!61 &662053885
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -37394,6 +37402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   death: {fileID: 0}
+  DeathParticles: {fileID: 0}
 --- !u!1 &1044253029
 GameObject:
   m_ObjectHideFlags: 0
@@ -37537,6 +37546,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   death: {fileID: 0}
+  DeathParticles: {fileID: 5574315616237661001, guid: 72e83f5b2e651a445a2f6b468d429140,
+    type: 3}
 --- !u!61 &1044253033
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -38502,6 +38513,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   death: {fileID: 0}
+  DeathParticles: {fileID: 0}
 --- !u!1 &1097817765
 GameObject:
   m_ObjectHideFlags: 0
@@ -38725,6 +38737,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   death: {fileID: 0}
+  DeathParticles: {fileID: 5574315616237661001, guid: 72e83f5b2e651a445a2f6b468d429140,
+    type: 3}
 --- !u!61 &1106712142
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -41939,6 +41953,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   death: {fileID: 0}
+  DeathParticles: {fileID: 0}
 --- !u!1 &1466765095
 GameObject:
   m_ObjectHideFlags: 0
@@ -47901,6 +47916,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   death: {fileID: 0}
+  DeathParticles: {fileID: 0}
 --- !u!1001 &1574190300
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -49939,6 +49955,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   death: {fileID: 0}
+  DeathParticles: {fileID: 0}
 --- !u!1 &1804654454
 GameObject:
   m_ObjectHideFlags: 0
@@ -51445,6 +51462,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   death: {fileID: 0}
+  DeathParticles: {fileID: 5574315616237661001, guid: 72e83f5b2e651a445a2f6b468d429140,
+    type: 3}
 --- !u!61 &1950573565
 BoxCollider2D:
   m_ObjectHideFlags: 0
